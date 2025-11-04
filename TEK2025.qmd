@@ -1,0 +1,440 @@
+---
+# title: "An Econometric Analysis of Turkish Art Markets"
+# subtitle: "Constructing Hedonic Price Indices"
+# author: "Hüseyin Taştan" 
+format:
+  revealjs:
+    width: 1920
+    height: 1080
+    margin: 0.1 
+    css: custom.css
+    # incremental: true 
+    slide-level: 2  
+    # title-slide-attributes:
+    #   data-background-image: "img/nuri-iyem-01.jpg"
+    #   data-background-size: "cover"
+    #   data-background-opacity: "0.3"
+    # toc: true
+    # toc-title: "Outline"
+    editor: source
+  pptx:
+    slide-level: 2
+   # reference-doc: custom-reference.pptx
+  beamer:
+    aspectratio: 169
+    navigation: horizontal
+    theme: Madrid
+    colortheme: default
+    fontsize: 11pt
+---
+
+#  {background-image="img/nuri-iyem-01.jpg" background-size="cover" background-opacity="0.4" background-color="#5f5f5f"}
+
+<h1>An Econometric Analysis of Turkish Art Markets:</h1>
+
+<h2>Constructing Hedonic Price Indices</h2>
+
+<h3>Hüseyin Taştan \| YTU</h3>
+
+<h4>Turkish Economic Association 32nd Conference on Economics</h4>
+
+<h4>13-15 November 2025, Eastern Mediterranean University, Famagusta North Cyprus</h4>
+
+#  {background-image="img/osman-hamdi-muzisyen-kiz.jpg" background-size="cover" background-opacity="0.2"}
+
+<h3>Outline</h3>
+
+-   Introduction\
+-   Data Description
+-   Sales Model Specification
+-   Results: Sales Model
+-   Hedonic Regression Model
+-   Results: Hedonic Model
+-   Return Characteristics
+
+## Introduction
+
+Why Study Art Markets?
+
+::: columns
+::: {.column .fragment width="50%"}
+**Growing Investment Interest**
+
+-   Art market valued at \~\$65 billion globally
+-   High net-worth individuals allocate 5-15% to alternative assets
+-   Post-COVID surge in digital art and online platforms
+-   Emerging markets (Turkey) developing art infrastructure
+:::
+
+::: {.column .fragment width="50%"}
+**Research Gaps**
+
+-   Limited academic work on emerging market art
+-   Difficulty in price measurement (heterogeneous goods)
+-   Questions about returns and risk characteristics
+-   Hedonic indices solve data comparability issues
+:::
+:::
+
+# Data Description
+
+## Dataset Overview
+
+::: columns
+::: {.column .fragment width="50%"}
+**Source and contents**
+
+-   Data is scraped from the www.lebriz.com which maintains comprehensive archive of art auctions.
+-   Discontinued in 2023, but contains data spanning 1990s to 2020
+-   We focus on paintings only (exclude sculpture, lithography, editions, etc.)
+-   Transaction level data on auction items
+-   Not repeat sales
+:::
+
+::: {.column .fragment width="50%"}
+**Variables**
+
+-   Artist name, auction house, auction date
+-   Artwork characteristics: dimensions (width and height), type of paintings (oil on canvas, watercolor on paper, oil on wood, acrylic on canvas, etc.), whether signed or not,
+-   Opening prices (contains missing values)
+-   Sale prices (in TL and USD) if sold (hammer price)
+:::
+:::
+
+## Dataset Overview
+
+::: columns
+::: {.column .fragment width="50%"}
+**Number of observations per year**
+ 
+:::
+
+::: {.column .fragment width="50%"}
+**Sale ratio over 1989-2020**
+ 
+:::
+:::
+
+## Artists 
+
+- There is no established list of blue-chip artists. 
+- Instead this study relies on a market-based reproducible metrics to determine elite/prominent artists
+- This is to see if there is heterogeneity in the art auction markets based on artists
+- Anonymous artists and those with the number of lots $<15$ are excluded.
+- The metric is based on the following Prominence Score (PS): 
+$$
+PS_i = 0.3 \times \text{Norm}(\bar{P}_i) + 0.3 \times \text{Norm}(V_i) + 0.2 \times \text{Norm}(N_i) + 0.2 \times \text{Norm}(P_{\max,i})
+$$
+- $\bar{P}_i$: average sale price, 
+- $V_i$: total market volume (cumulative sum of all sales)
+- $N_i$: total number of transactions 
+- $P_{\max,i}$: maximum sale price 
+- $Norm(x)$ is the min-max normalization to (0,1) defined as
+$$
+\text{Norm}(x) = \frac{x - \min(x)}{\max(x) - \min(x)}
+$$ 
+Osman Hamdi is excluded in the computation of PS. 
+
+Top 100 highest artists are classified as Elite/Prominent segment.
+
+
+## Prominent Artists 
+
+
+
+# Sales Model Specification
+
+## Model Formulation
+
+Content here...
+
+## Results: Sales Model
+
+## Sale Model Probit Results {.smaller .smallest}
+
+![](fig/probit_coef_plot.png)
+
+::: notes
+Key findings: - All coefficients have the same sign across all three models - log(Size) is consistently positive and significant - log(Opening Price) is consistently negative (U-shaped relationship confirms this) - Prominent artists benefit from a "Signed" premium (\~0.31 coefficient) - Canvas material has a positive effect on sale probability
+:::
+
+## Sale Model Probit Results {.smaller}
+
+![](fig/probit_coef_plot_medium.png)
+
+::: notes
+Key findings:
+:::
+
+## Sale Model Probit Results {.smaller}
+
+![](fig/probit_coef_plot_material.png)
+
+::: notes
+Key findings:
+:::
+
+# Hedonic Regression Model
+
+## Methodology
+
+An artwork's log auction price can be written as
+
+$$
+p_{it} = p_i + p_t + \varepsilon_{it}, 
+$$
+
+where $p_{it}$ is the log price of object $i$ at time $t$, $p_i$ captures the fixed (unobserved) quality of the object, $p_t$ is the period price index (common market movement), and $\varepsilon_{it}$ is an idiosyncratic shock.
+
+Hedonic specification substitutes a parametric form for the fixed quality:
+
+$$ 
+p_{it} = \beta x_i + p_t + \varepsilon_i + \varepsilon_{it}, 
+$$ 
+
+- $x_i$: vector of observed attributes (signed dummy, size, aspect ratio, medium of art, material, artist fixed effects, auction house fixed effects) 
+
+- hedonic models control for quality by observable characteristics $x$ (allowing use of all observations), while repeat‑sales treat $p_i$ as an object fixed effect (identified only for items sold more than once).
+
+## Descriptive statistics 
+
+
+## Results: Hedonic Model
+
+## Hedonic regression model estimation results (USD) {.smaller .scrollable}
+
+(Full results in [Appendix Table 1](#tab:hedonic_usd))
+
+![](fig/hedonic_coefficients_usd.png)
+
+::: notes
+Key findings:
+:::
+
+## Hedonic regression model estimation results (TL) {.smaller}
+
+![](fig/hedonic_coefficients_tl.png)
+
+::: notes
+Key findings:
+:::
+
+## Hedonic price index
+
+::: columns
+::: {.column width="50%"}
+![](fig/art_segments_comparison.png){fig-align="center"}
+:::
+
+::: {.column width="50%"}
+![](fig/art_segments_vs_financials.png){fig-align="center"}
+:::
+:::
+
+## Return Characteristics
+
+# Appendix {.appendix}
+
+##  {.scrollable}
+
+::: regression-table-container
+::: horizontal-scroll-wrapper
+Table 1: Probit Estimation Results
+
+|                               | **All Artists** | **Prominent** | **Nonprominent** |
+|:------------------------|:---------------|:---------------|:---------------|
+| Signed                        | 0.237\*\*\*     | 0.322\*\*\*   | 0.143\*\*\*      |
+|                               | (0.028)         | (0.044)       | (0.034)          |
+| log(size)                     | 0.201\*\*\*     | 0.152\*\*\*   | 0.271\*\*\*      |
+|                               | (0.013)         | (0.018)       | (0.016)          |
+| log(aspect)                   | -0.057\*\*      | -0.044        | -0.070\*\*       |
+|                               | (0.019)         | (0.027)       | (0.025)          |
+| log(opening price)            | -0.719\*\*\*    | -0.563\*\*\*  | -0.853\*\*\*     |
+|                               | (0.044)         | (0.071)       | (0.071)          |
+| log(opening price) sq.        | 0.028\*\*\*     | 0.021\*\*\*   | 0.032\*\*\*      |
+|                               | (0.003)         | (0.004)       | (0.005)          |
+| Medium: Acrylic               | 0.015           | 0.026         | -0.002           |
+|                               | (0.048)         | (0.083)       | (0.058)          |
+| Medium: Gouache               | -0.047          | -0.046        | -0.041           |
+|                               | (0.051)         | (0.059)       | (0.102)          |
+| Medium: Graphite/Charcoal/Ink | -0.523\*\*\*    | -0.493\*\*\*  | -0.472\*\*\*     |
+|                               | (0.059)         | (0.072)       | (0.103)          |
+| Medium: Mixed media           | -0.136\*\*\*    | -0.107\*      | -0.171\*\*\*     |
+|                               | (0.030)         | (0.042)       | (0.044)          |
+| Medium: Pastel                | -0.285\*\*\*    | -0.386\*\*\*  | -0.140           |
+|                               | (0.061)         | (0.070)       | (0.091)          |
+| Medium: Watercolor            | -0.106\*\*      | -0.077        | -0.129\*         |
+|                               | (0.037)         | (0.048)       | (0.057)          |
+| Material: Cardboard           | -0.093\*\*\*    | -0.091\*\*    | -0.094\*         |
+|                               | (0.025)         | (0.033)       | (0.040)          |
+| Material: Hardboard           | -0.054\*        | -0.081\*      | -0.015           |
+|                               | (0.026)         | (0.039)       | (0.033)          |
+| Material: Paper               | -0.215\*\*\*    | -0.244\*\*\*  | -0.193\*\*\*     |
+|                               | (0.036)         | (0.048)       | (0.054)          |
+| Material: Pressed canvas      | -0.101\*        | -0.167\*      | -0.021           |
+|                               | (0.046)         | (0.078)       | (0.056)          |
+| Material: Wood                | -0.122\*\*\*    | -0.161\*\*\*  | -0.065           |
+|                               | (0.031)         | (0.043)       | (0.044)          |
+| Artist FE                     | Yes             | Yes           | Yes              |
+| Auction House FE              | Yes             | Yes           | Yes              |
+| Time FE                       | Yes             | Yes           | Yes              |
+| N                             | 70417           | 34319         | 36063            |
+| R2                            | 0.133           | 0.115         | 0.145            |
+| R2 Adj.                       | 0.116           | 0.106         | 0.117            |
+
+<p class="table-notes">
+
+Notes: Probit estimation results. Dependent variable is Sale which equals 1 if the artwork is sold and 0 otherwise. Oil is the base group for Medium, Canvas is the base group for Material. Standard errors are clustered at artist level. <br> + p \< 0.1, \* p \< 0.05, \*\* p \< 0.01, \*\*\* p \< 0.001
+
+</p>
+:::
+:::
+
+##  {.scrollable}
+
+::: regression-table-container
+::: horizontal-scroll-wrapper
+Table 2: Average Marginal Effects
+
+|                             | **All Artists** | **Prominent** | **Nonprominent** |
+|:-----------------------|:---------------|:---------------|:---------------|
+| log(aspect)                 | -0.019\*\*      | -0.014        | -0.023\*\*       |
+|                             | (0.006)         | (0.009)       | (0.009)          |
+| log(size)                   | 0.066\*\*\*     | 0.048\*\*\*   | 0.090\*\*\*      |
+|                             | (0.005)         | (0.007)       | (0.006)          |
+| log(opening price)          | -0.100\*\*\*    | -0.071\*\*\*  | -0.136\*\*\*     |
+|                             | (0.007)         | (0.012)       | (0.009)          |
+| Signed                      | 0.080\*\*\*     | 0.107\*\*\*   | 0.048\*\*\*      |
+|                             | (0.010)         | (0.018)       | (0.011)          |
+| cardboard - canvas          | -0.030\*\*\*    | -0.028\*      | -0.031\*         |
+|                             | (0.009)         | (0.011)       | (0.014)          |
+| hardboard - canvas          | -0.017\*        | -0.025\*      | -0.005           |
+|                             | (0.009)         | (0.013)       | (0.011)          |
+| paper - canvas              | -0.071\*\*\*    | -0.079\*\*\*  | -0.065\*\*\*     |
+|                             | (0.013)         | (0.019)       | (0.019)          |
+| pressed canvas - canvas     | -0.033\*        | -0.053\*      | -0.007           |
+|                             | (0.015)         | (0.026)       | (0.019)          |
+| wood - canvas               | -0.040\*\*\*    | -0.051\*\*    | -0.022           |
+|                             | (0.011)         | (0.016)       | (0.015)          |
+| Acrylic - Oil               | 0.005           | 0.008         | -0.001           |
+|                             | (0.016)         | (0.026)       | (0.019)          |
+| Gouache - Oil               | -0.015          | -0.015        | -0.014           |
+|                             | (0.017)         | (0.019)       | (0.034)          |
+| Graphite/Charcoal/Ink - Oil | -0.177\*\*\*    | -0.167\*\*\*  | -0.158\*\*\*     |
+|                             | (0.021)         | (0.030)       | (0.034)          |
+| Mixed media - Oil           | -0.045\*\*\*    | -0.034\*      | -0.057\*\*\*     |
+|                             | (0.010)         | (0.015)       | (0.015)          |
+| Pastel - Oil                | -0.096\*\*\*    | -0.129\*\*\*  | -0.047           |
+|                             | (0.021)         | (0.027)       | (0.031)          |
+| Watercolor - Oil            | -0.035\*\*      | -0.024        | -0.043\*         |
+|                             | (0.013)         | (0.016)       | (0.019)          |
+
+<p class="table-notes">
+
+Notes: Average marginal effects based on probit results. Standard errors in parentheses. <br> + p \< 0.1, \* p \< 0.05, \*\* p \< 0.01, \*\*\* p \< 0.001
+
+</p>
+:::
+:::
+
+##  {#tab:hedonic_usd .scrollable}
+
+::: regression-table-container
+Table 3: Hedonic art price regressions (in USD)
+
+|                           | **All Artists** | **Elite/Prominent** | **Nonprominent** |
+|:---------------------|:----------------|:----------------|:----------------|
+| log(size)                 | 0.666\*\*\*     | 0.710\*\*\*         | 0.590\*\*\*      |
+|                           | (0.017)         | (0.025)             | (0.013)          |
+| log(aspect)               | -0.076\*\*      | -0.090\*            | -0.071\*\*\*     |
+|                           | (0.025)         | (0.038)             | (0.020)          |
+| Signed                    | 0.151\*\*\*     | 0.241\*\*\*         | 0.016            |
+|                           | (0.034)         | (0.045)             | (0.029)          |
+| **Medium categories**     |                 |                     |                  |
+|     Acrylic               | 0.000           | 0.019               | -0.013           |
+|                           | (0.043)         | (0.058)             | (0.026)          |
+|     Gouache               | -0.137          | -0.151              | -0.207\*\*       |
+|                           | (0.121)         | (0.127)             | (0.065)          |
+|     Graphite/Charcoal/Ink | -1.111\*\*\*    | -1.164\*\*\*        | -0.727\*\*\*     |
+|                           | (0.090)         | (0.107)             | (0.087)          |
+|     Mixed media           | -0.216\*\*\*    | -0.264\*\*\*        | -0.094\*\*       |
+|                           | (0.032)         | (0.044)             | (0.033)          |
+|     Pastel                | -0.334\*\*\*    | -0.382\*\*\*        | -0.222\*\*       |
+|                           | (0.068)         | (0.086)             | (0.082)          |
+|     Watercolor            | -0.404\*\*\*    | -0.446\*\*\*        | -0.380\*\*\*     |
+|                           | (0.043)         | (0.069)             | (0.055)          |
+| **Material categories**   |                 |                     |                  |
+|     Cardboard             | -0.254\*\*\*    | -0.300\*\*\*        | -0.177\*\*\*     |
+|                           | (0.031)         | (0.043)             | (0.031)          |
+|     Hardboard             | -0.085\*\*      | -0.095\*            | -0.058\*         |
+|                           | (0.030)         | (0.046)             | (0.028)          |
+|     Paper                 | -0.451\*\*\*    | -0.491\*\*\*        | -0.319\*\*\*     |
+|                           | (0.035)         | (0.046)             | (0.041)          |
+|     Pressed canvas        | -0.138\*\*\*    | -0.196\*\*\*        | -0.070           |
+|                           | (0.037)         | (0.041)             | (0.051)          |
+|     Wood                  | -0.086\*\*      | -0.128\*\*\*        | 0.003            |
+|                           | (0.026)         | (0.036)             | (0.041)          |
+| Artist FE                 | Yes             | Yes                 | Yes              |
+| Auction house FE          | Yes             | Yes                 | Yes              |
+| Time FE                   | Yes             | Yes                 | Yes              |
+| N                         | 54701           | 31739               | 22962            |
+| R2 Adj.                   | 0.839           | 0.808               | 0.802            |
+
+<p class="table-notes">
+
+Notes: Dependent variable is log of sale price in USD. Base group of Signed is "no signature". Base group for medium is "Oil", base group of material is "Canvas". Standard errors (in parentheses) are clustered at artist and time (semiannual). 1989-1 (first half-year) is excluded (base period). + p \< 0.1, \* p \< 0.05, \*\* p \< 0.01, \*\*\* p \< 0.001
+
+</p>
+:::
+
+[← Back to Results](#/hedonic_usd)
+
+##  {.scrollable}
+
+::: regression-table-container
+Table 4: Hedonic art price regressions (in TL)
+
+|                           | **All Artists** | **Prominent** | **Non-prominent** |
+|:----------------------|:----------------|:----------------|:----------------|
+| log(size)                 | 0.665\*\*\*     | 0.710\*\*\*   | 0.591\*\*\*       |
+|                           | (0.017)         | (0.025)       | (0.013)           |
+| log(aspect)               | -0.076\*\*      | -0.090\*      | -0.070\*\*\*      |
+|                           | (0.025)         | (0.039)       | (0.020)           |
+| Signed                    | 0.152\*\*\*     | 0.242\*\*\*   | 0.018             |
+|                           | (0.035)         | (0.046)       | (0.029)           |
+| **Medium categories**     |                 |               |                   |
+|     Acrylic               | 0.001           | 0.021         | -0.012            |
+|                           | (0.043)         | (0.058)       | (0.027)           |
+|     Gouache               | -0.135          | -0.149        | -0.207\*\*        |
+|                           | (0.121)         | (0.127)       | (0.065)           |
+|     Graphite/Charcoal/Ink | -1.106\*\*\*    | -1.159\*\*\*  | -0.725\*\*\*      |
+|                           | (0.091)         | (0.108)       | (0.088)           |
+|     Mixed media           | -0.216\*\*\*    | -0.264\*\*\*  | -0.092\*\*        |
+|                           | (0.032)         | (0.044)       | (0.033)           |
+|     Pastel                | -0.336\*\*\*    | -0.384\*\*\*  | -0.224\*\*        |
+|                           | (0.068)         | (0.087)       | (0.082)           |
+|     Watercolor            | -0.401\*\*\*    | -0.443\*\*\*  | -0.376\*\*\*      |
+|                           | (0.042)         | (0.068)       | (0.054)           |
+| **Material categories**   |                 |               |                   |
+|     Cardboard             | -0.254\*\*\*    | -0.299\*\*\*  | -0.177\*\*\*      |
+|                           | (0.031)         | (0.043)       | (0.031)           |
+|     Hardboard             | -0.085\*\*      | -0.095\*      | -0.056\*          |
+|                           | (0.030)         | (0.046)       | (0.028)           |
+|     Paper                 | -0.453\*\*\*    | -0.492\*\*\*  | -0.322\*\*\*      |
+|                           | (0.035)         | (0.046)       | (0.041)           |
+|     Pressed canvas        | -0.136\*\*\*    | -0.194\*\*\*  | -0.069            |
+|                           | (0.037)         | (0.041)       | (0.049)           |
+|     Wood                  | -0.086\*\*      | -0.128\*\*\*  | 0.004             |
+|                           | (0.026)         | (0.036)       | (0.040)           |
+| Artist FE                 | Yes             | Yes           | Yes               |
+| Auction house FE          | Yes             | Yes           | Yes               |
+| Time FE                   | Yes             | Yes           | Yes               |
+| N                         | 54701           | 31739         | 22962             |
+| R2 Adj.                   | 0.892           | 0.888         | 0.868             |
+
+<p class="table-notes">
+
+Notes: Dependent variable is log of sale price in TL. Base group of Signed is "no signature". Base group for medium is "Oil", base group of material is "Canvas". Standard errors (in parentheses) are clustered at artist and time (semiannual). 1989-1 (first half-year) is excluded (base period). + p \< 0.1, \* p \< 0.05, \*\* p \< 0.01, \*\*\* p \< 0.001
+
+</p>
+:::

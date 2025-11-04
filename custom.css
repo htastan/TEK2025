@@ -1,0 +1,113 @@
+/* custom.css */
+
+/* Adjust font size for h2 titles on slides with scrollable content */
+
+/* Title slide styling */
+.reveal .slides section.title {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  padding-left: 40px;
+  padding-bottom: 60px;
+}
+
+.reveal .slides section.title h1 {
+  font-size: 2.2em !important;
+  text-align: left;
+  margin: 0 0 20px 0;
+  width: 70%;
+}
+
+.reveal .slides section.title .subtitle {
+  font-size: 1.3em !important;
+  text-align: left;
+  margin: 0 0 15px 0;
+}
+
+.reveal .slides section.title .author {
+  font-size: 1em !important;
+  text-align: left;
+  margin: 0;
+}
+
+/* Force smaller h2 titles */
+.reveal h2 {
+  font-size: 1.5em !important;
+  margin-bottom: 0.3em !important;
+}
+
+/* For scrollable slides */
+.reveal .slide-content.scrollable h2 {
+  font-size: 1.5em !important;
+  margin-bottom: 0.3em !important;
+}
+
+/* Also target slide titles specifically */
+.reveal .slide h2 {
+  font-size: 1.5em !important;
+}
+
+.reveal .slides section {
+  transform: none !important;
+  -webkit-transform: none !important;
+}
+
+.reveal .slides {
+  perspective: none;
+}
+
+
+/* --- General Table Styling --- */
+.regression-table-container table {
+    width: 100%; /* Make table fill the container */
+      border-collapse: collapse;
+    margin-top: 15px;
+    font-size: 0.75em; /* Adjust this value for overall table text size */
+  }
+
+.regression-table-container th,
+.regression-table-container td {
+  padding: 5px 8px; /* Reduced padding for more compact look */
+    text-align: right;
+  border-bottom: 1px solid #ddd;
+}
+
+.regression-table-container th {
+  background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+.regression-table-container tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* Left align the first column */
+  .regression-table-container td:first-child,
+.regression-table-container th:first-child {
+  text-align: left;
+}
+
+/* Style for notes below the table */
+  .regression-table-container p.table-notes {
+    text-align: left;
+    font-size: 0.6em; /* Slightly smaller for notes */
+      margin-top: 10px;
+    line-height: 1.3;
+  }
+
+/* --- Scrollable Content Styling (for entire slide content) --- */
+  .reveal .slide-content.scrollable {
+    overflow-y: auto; /* Enable vertical scrolling */
+  }
+
+/* --- Horizontal scroll for table only (if needed for wide tables) --- */
+  .reveal .slide-content .horizontal-scroll-wrapper {
+    overflow-x: auto;
+  }
+
+/* Ensure r-fit-text doesn't conflict with table sizing */
+.r-fit-text {
+  font-size: inherit !important; /* Reset font size, let other CSS control it */
+  transform: none !important;     /* Disable scaling */
+}
