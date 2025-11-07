@@ -45,39 +45,78 @@ format:
 
 <h3>Outline</h3>
 
--   Introduction\
--   Data Description
--   Sales Model Specification
--   Results: Sales Model
+-   Introduction
+-   Data and Descriptive Statistics
+-   Sale Model  
 -   Hedonic Regression Model
--   Results: Hedonic Model
--   Return Characteristics
+-   Hedonic Price Indices
+-   Returns to Art Investment
+- Conclusion
 
-## Introduction
-
-Why Study Art Markets?
+## Introduction  
 
 ::: columns
 ::: {.column .fragment width="50%"}
-**Growing Investment Interest**
+**Research Focus**
 
--   Art market valued at \~\$65 billion globally
--   High net-worth individuals allocate 5-15% to alternative assets
--   Post-COVID surge in digital art and online platforms
--   Emerging markets (Turkey) developing art infrastructure
+- This study examines Turkish art markets through two econometric lenses:
+  - Liquidity dimension: 
+    - What characteristics predict whether an artwork sells? How do sale probabilities differ by artist prominence?
+  - Price dimension:
+    - What explains auction prices?
+    - How do price determinants differ by artist prominence?
+- Data: Turkish paintings auction data, 1989-2020 (semi-annual)
 :::
 
 ::: {.column .fragment width="50%"}
-**Research Gaps**
+**Methods**
 
--   Limited academic work on emerging market art
--   Difficulty in price measurement (heterogeneous goods)
--   Questions about returns and risk characteristics
--   Hedonic indices solve data comparability issues
+- Liquidity analysis:
+  - Probit model of sale (1/0)
+  - Predicts: Artwork characteristics → Sale probability
+  - By segment: Prominent vs. non-prominent
+- Price analysis:
+  - Hedonic regression of log(Sale price)
+  - Predicts: Artwork characteristics → Price levels
+  - By segment: Prominent vs. non-prominent
+  
+- Do liquidity and price models yield different insights?
+- How do segments differ in each dimension?
 :::
 :::
 
-# Data Description
+## Introduction
+
+Overview of the literature
+
+::: columns
+::: {.column .fragment width="50%"}
+**Global**
+
+- Early pessimistic view (1980s-1990s):
+  - Low real returns, high volatility 
+  - Art underperforms financial assets significantly
+  - High transaction costs and illiquidity penalties
+- More recently (2000-2010s): 
+  - Positive real returns but Sharpe ratios lag equities
+  - Valuable diversification benefit: low correlation with stocks/bonds
+  - Heterogeneous returns across segments: Modern art outperforms contemporary; investment-grade outperforms speculative
+:::
+
+::: {.column .fragment width="50%"}
+**Studies on Turkish art markets**
+
+- Literature largely focuses on western art markets, Limited academic work on emerging market art 
+- Turkish literature growing. Current evidence suggests: 
+  - Small positive real returns and diversification benefits (Atukeren and Seçkin (2006)
+  - Turkish market integrated with international art markets (Atukeren and Seçkin (2012))
+  - Underperformance versus domestic equities but outperformance versus global aggregates with feedback to the stock market (Demir et al. (2018)),
+  - Partial hedge/safe‑haven behavior during crises (Öztürkkal and Togan-Eğrican (2020)) 
+
+:::
+:::
+
+# Data {background-image="img/bedri-rahmi-istanbul.jpg" background-size="cover" background-opacity="0.4"}
 
 ## Dataset Overview
 
@@ -102,16 +141,26 @@ Why Study Art Markets?
 :::
 :::
 
-## Dataset Overview
+## Market size 
 
 ::: columns
-::: {.column .fragment width="50%"}
-**Number of observations per year**
- 
+::: {.column .fragment width="50%"} 
+![](fig/market_size_total_volume.png)
 :::
 
 ::: {.column .fragment width="50%"}
-**Sale ratio over 1989-2020**
+- The Turkish art auction market for paintings experienced substantial growth over the study period as shown in this figure which presents the total market volume in nominal USD, measured by hammer prices (sale prices).
+
+- Annual market volume ranged from just about 1 million USD in 1989 to a peak of 83 million USD in 2010 
+
+- EARLY PERIOD (1989-1995): Data indicates nacent activity  
+
+- GROWTH PHASE (1996-2007): Following the mid-1990s, market volumes increased steadily during this period, indicating both increased supply and growing collector interest.
+
+- BOOM PERIOD (2009-2012):  Peak market volume reached in 2010, with 4853 transactions representing the market's historical high.  
+
+- Decline (2012-2020): Following the 2010 peak, market volumes declined gradually  
+
  
 :::
 :::
@@ -134,30 +183,241 @@ $$
 $$
 \text{Norm}(x) = \frac{x - \min(x)}{\max(x) - \min(x)}
 $$ 
-Osman Hamdi is excluded in the computation of PS. 
 
-Top 100 highest artists are classified as Elite/Prominent segment.
 
 
 ## Prominent Artists 
 
 
+- Top 100 artists are classified in the Elite/Prominent segment out of 486 unique artists.
 
-# Sales Model Specification
+| Segment | Artworks Offered | Sale Rate | Avg Price | Total Volume | Artists |
+|---------|----------:|----------:|----------:|----------:|----------:|
+| Non-Prominent | 57,496 | 58.6% | $4,203 | $141.7M | 388 |
+| Prominent (Top 100) | 43,025 | 73.8% | $17,410 | $552.7M | 100 |
+| **Total** | **100,521** | **65.3%** | **$10,323** | **$694.4M** | **488** |
+: Sample composition and liquidity by artist segment (1989-2020)
 
-## Model Formulation
+* Includes Anonymous artists and those with lots<15 (classified as nonprominent).
 
-Content here...
+* **Key Pattern:** The top 100 artists (20.5% of population) generate 79.6% of total market volume, with 4.1× higher average prices and 15.2 percentage points higher sale rates. This concentration motivates separate econometric analysis by segment.
 
-## Results: Sales Model
+* In the sales and hedonic price modeling we exclude Anonymous and nlots<15 groups. 
 
-## Sale Model Probit Results {.smaller .smallest}
+
+## Liquidity by Artist group
+
+| Artist Group | N Offered | N Sold | N Unsold | Sale Rate |
+|---------|----------:|----------:|----------:|----------:|
+| Prominent | 43,020 | 31,748 | 11,272 | 73.8% |
+| Non-Prominent | 40,450 | 24,766 | 15,684 | 61.2% |
+| Anonymous | 3,181 | 1,637 | 1,544 | 51.5% |
+| Other (nlots<15) | 13,856 | 7,312 | 6,544 | 52.8% |
+| **Total** | **100,507** | **65,463** | **35,044** | **65.1%** |
+: Sale rates by artist group (1989-2020)
+
+**Highlights:**
+
+- **Prominent artists** have the highest sale rate (73.8%)
+- **Anonymous artworks** have the lowest (51.5%)
+- **Non-prominent** but established artists fall in the middle (61.2%) indicating meaningful market depth. 
+- **Artists with few items** also have low sale rates (52.8%) which may be a sign of limited marketing attention, weaker collector demand, and greater uncertainty about quality or attribution.
+- Overall market sale rate: 65.1%
+
+
+## {}
+
+::: columns
+::: {.column width="80%"}
+![](fig/prominent_max1.png) 
+:::
+
+::: {.column width="20%"} 
+- Includes both **historical masters** (19th/20th century) and **established contemporary figures**
+- Osman Hamid Bey is at the top with $5.5M sale, followed by Fahrelnisa Zeid, Erol Akyavaş, Şeker Ahmet Paşa 
+- Remaining 60 artists range $10K-220K
+- Among living artists, Taner Ceylan is at the top followed by Ergin İnan, Canan Tolon, Neş'e Erdok
+:::
+:::
+
+## Sale Rate Dynamics Over Time
+
+:::: {.columns}
+
+::: {.column width="70%"}
+![Sale Rate Over Time by Artist Group](fig/sale_dynamics.png)
+:::
+
+::: {.column width="30%"}
+
+**1989-1995:**
+- Both groups swing a lot, minimal gap  
+
+**1996-2005:**
+- Prominent stabilize at 70%
+- Non-prominent volatile 50-70%
+- Gap widens
+
+**2006-2020:**
+- Prominent: resilient 70-85%
+- Non-prominent: trending lower
+- Gap persists
+ 
+
+:::
+
+::::
+ 
+
+
+## Auction houses
+
+::: columns
+::: {.column width="70%"} 
+![](fig/auction_house_volume_share.png) 
+::: 
+
+::: {.column width="30%"}
+ **Antik A.S. dominates by volume but not transactions** — They capture ~30% of sales volume but only ~16% of transactions, indicating they handle higher-priced artworks.
+
+- **Volume vs. Transaction concentration** — this graph shows high concentration (top 3 houses), while transactions (in the next slide) are more dispersed. High-value sales concentrate in fewer houses, but transaction volume spreads across more players.
+ 
+:::
+:::
+
+## Auction houses 
+
+:::: {.columns}
+::: {.column width="70%"}
+![](fig/auction_house_transactions_share.png)
+::: 
+
+::: {.column width="30%"}
+- Beyaz leads by transaction count - They have the most transactions (~17%) but only ~13% of volume. This indicates they sell more items at lower average prices.
+
+- **Market Structure** — Three auction houses (Antik A.S., Beyaz, Bali) account for ~50% of total volume but a smaller share of transaction count.
+:::
+:::
+
+<!-- ## Painting medium and material -->
+
+<!-- ::: columns -->
+<!-- ::: {.column .fragment width="50%"}  -->
+<!-- ![](fig/art_medium.png) -->
+
+<!-- ::: -->
+
+<!-- ::: {.column .fragment width="50%"} -->
+
+<!-- ![](fig/art_material.png) -->
+
+
+<!-- ::: -->
+<!-- ::: -->
+
+<!-- ## Medium and Material combinations -->
+
+<!-- ![](fig/art_medium_material.png) -->
+
+<!-- ## Number of observations per half-year -->
+<!-- ![](fig/nobs_semiannual.png) -->
+
+
+## Price Distribution by Artist Segment
+
+:::: {.columns}
+
+::: {.column width="75%"}
+![](fig/sale_price_hist.png)
+:::
+
+::: {.column width="25%"}
+ 
+
+**Prominent Artists (Teal):**
+- Peak: $5,000–$20,000
+- Right-skewed distribution
+- Higher median price
+- Concentrated in mid-to-high range
+
+**Non-Prominent (Orange):**
+- Peak: $800–$2,000
+- Left-skewed toward lower prices
+- Wider spread
+- More price variability
+ 
+Prominent artists show **clustering at higher price points**, while non-prominent show **dispersed, lower valuations**.  
+
+:::
+
+::::
+
+
+# Sales Model {background-image="img/bedri-rahmi-kartalbaba.jpg" background-size="cover" background-opacity="0.4"} 
+
+## Model Formulation 
+
+We estimate a probit model with fixed effects to predict sale probability:
+
+$$
+\begin{aligned}
+P(\text{sold}_i = 1 | \mathbf{X}_i) &= \Phi(\mathbf{X}_i' \boldsymbol{\beta} + \alpha_{a(i)} + \alpha_{h(i)} + \alpha_{t(i)}) \\
+\end{aligned}
+$$
+where:
+
+- $\text{sold}_i$ is a binary indicator equal to 1 if artwork $i$ sold at auction, 0 otherwise
+- $\Phi(\cdot)$ is the standard normal CDF (probit link function)
+- $\mathbf{X}_i$ includes artwork characteristics:
+  - $\text{signed}_i$: indicator for signed artwork; $\log(\text{size}_i)$:  log area in cm² (width*height);  $\log(\text{aspect}_i)$: log aspect ratio (width/height)
+  - $\text{medium}_i$ — art medium (oil, watercolor, etc.), base group = oil
+  - $\text{material}_i$ — art material (canvas, paper, etc.) base group = canvas
+- $\alpha_{a(i)}$ — artist fixed effect 
+- $\alpha_{h(i)}$ — auction house fixed effect 
+- $\alpha_{t(i)}$ — semi-annual time fixed effect
+- Standard errors clustered at artist and time  
+
+
+
+## Sale Model Probit Results {.smaller}
 
 ![](fig/probit_coef_plot.png)
 
 ::: notes
 Key findings: - All coefficients have the same sign across all three models - log(Size) is consistently positive and significant - log(Opening Price) is consistently negative (U-shaped relationship confirms this) - Prominent artists benefit from a "Signed" premium (\~0.31 coefficient) - Canvas material has a positive effect on sale probability
 :::
+
+## Probit Model Results: Artwork Characteristics
+
+:::: {.columns}
+
+::: {.column width="75%"}
+![](fig/probit_coef_plot.png) 
+:::
+
+::: {.column width="25%"}
+**Signature Effect:**
+- Prominent: +0.322
+- Non-prominent: +0.143
+- All artists: +0.237
+- **Strongest predictor** of sale
+
+**Size Effect:**
+- All segments show positive effect (~0.15–0.27)
+- Larger artworks more likely to sell
+
+**Aspect Ratio:**
+- Near zero across all groups
+- Minimal impact on saleability
+
+**Opening Price (Nonlinear):**
+- Linear term: strongly negative (−0.56 to −0.85)
+- Quadratic: near zero
+- **Aggressive pricing reduces sale probability**
+
+:::
+
+::::
 
 ## Sale Model Probit Results {.smaller}
 
@@ -175,7 +435,102 @@ Key findings:
 Key findings:
 :::
 
-# Hedonic Regression Model
+## Average Marginal Effects: Sale Probability
+
+:::: {.columns}
+
+::: {.column width="80%"}
+![](fig/ame_combined_plot.png)
+:::
+
+::: {.column width="20%"}
+**Signature** (Largest Effect)
+- Prominent: +8–10pp
+- All artists: +7–8pp
+- **Most consequential factor**
+
+**Size** (Second-Order)
+- +3–5pp per 10% increase
+- Moderate positive effect
+
+**Opening Price** (Negative)
+- −2 to −3pp per log increase
+- Strategic reserve setting matters
+
+**Medium** (Heterogeneous)
+- Oil (baseline): reference
+- Acrylic: ≈0 (equivalent)
+- Pastel: −3 to −4pp
+- Graphite: −6 to −8pp (worst)
+
+**Material** (Modest)
+- Canvas (baseline): reference
+- Paper: −2 to −4pp
+- Wood/Hardboard: −1 to −2pp
+- Cardboard: ≈0 (neutral)
+
+**Aspect Ratio**
+- Negligible across all groups
+
+:::
+
+::::
+
+## Average Marginal Effects on Sale Probability
+
+| Variable | All Artists | Prominent | Non-Prominent |
+|----------|-------------|-----------|----------------|
+| Signature | +8.0pp*** | +10.7pp*** | +4.8pp*** |
+| log(Size) | +6.6pp*** | +4.8pp*** | +9.0pp*** |
+| log(Opening Price) | −10.0pp*** | −7.1pp*** | −13.6pp*** |
+| log(Aspect Ratio) | −1.9pp** | −1.4pp | −2.3pp** |
+
+
+1. **Signature matters most for prominent artists** (+10.7pp) but matters less for the rest (+4.8pp)
+
+2. **Size matters most for non-prominent artists** (+9.0pp)  
+
+3. **Opening price is the dominant penalty** — especially for non-prominent (−13.6pp per log increase)
+   - A non-prominent work with 10% higher reserve loses 1.4pp in sale probability
+   - Auctioneers must price aggressively for this segment
+
+4. **Aspect ratio** — has a small but significant effect
+
+## Sale model: summary 
+
+- **Core drivers** of sale probability are signature status (+8–11pp), artwork scale (+5–9pp), and opening price strategy (−7 to −14pp). These factors dwarf all other considerations.
+
+- **Medium effects**, while statistically significant, are economically modest. Drawing media (graphite, pastel) incur penalties of 4–8pp relative to oil painting, but this pales beside the 10pp opening price elasticity or the 6–9pp size effect. Acrylic performs equivalently to oil, suggesting **technique matters less than the painting vs. drawing dichotomy**—reflecting persistent market preference for painted works over drawings.
+
+- **Material effects** are negligible (1–4pp penalties for paper, wood, hardboard vs. canvas). This suggests buyers prioritize the **artistic medium and the artist's reputation** far more than physical durability or presentation format. Canvas remains optimal but substrate choice is tertiary relative to technique choice.
+
+- **Bottom line:** Success hinges on **who made it** (signature), **how big it is** (size), and **what price the auctioneer sets** (reserve). The mechanics of production—whether acrylic vs. oil, canvas vs. paper—matter but are secondary concerns.
+
+
+## Opening Price vs Sale Probability 
+
+
+:::: {.columns}
+
+::: {.column width="80%"}
+
+![](fig/sale_opening_price1.png){width="70%"}
+ 
+- Buyers discount heavily on non-prominent names; high reserves signal desperation or overvaluation
+- At extreme prices, high reserves on prominent works signal confidence (attraction) 
+ 
+:::
+
+::: {.column width="20%"}
+
+- Aggressive opening prices filter to serious collectors only; for non-prominent segment this shrinks the addressable market; for established names, it selects the most committed buyers
+ 
+:::
+
+::::
+
+
+# Hedonic Regression Model {background-image="img/osman-hamdi-bey-kaplumbaga-terbiyecisi.jpg" background-size="cover" background-opacity="0.4"} 
 
 ## Methodology
 
@@ -197,10 +552,6 @@ $$
 
 - hedonic models control for quality by observable characteristics $x$ (allowing use of all observations), while repeat‑sales treat $p_i$ as an object fixed effect (identified only for items sold more than once).
 
-## Descriptive statistics 
-
-
-## Results: Hedonic Model
 
 ## Hedonic regression model estimation results (USD) {.smaller .scrollable}
 
@@ -220,19 +571,229 @@ Key findings:
 Key findings:
 :::
 
+
+
 ## Hedonic price index
 
 ::: columns
+::: {.column width="75%"}
+![](fig/hedonic_index_USD_tran.png) 
+:::
+
+::: {.column width="25%"} 
+:::
+:::
+
+
+## Hedonic price index
+
+::: columns
+::: {.column width="75%"}
+![](fig/hedonic_index_USD_segment.png) 
+:::
+
+::: {.column width="25%"} 
+:::
+:::
+
+
+
+## Hedonic price index
+
+::: columns
+::: {.column width="75%"}
+![](fig/hedonic_index_TL_segment.png) 
+:::
+
+::: {.column width="25%"} 
+:::
+:::
+
+
+## Hedonic price index
+
+::: columns
+::: {.column width="75%"}
+![](fig/art_index_TL_log.png) 
+:::
+
+::: {.column width="25%"} 
+:::
+:::
+
+## Turkish Art Market Performance (1989-2020)
+
+:::: {.columns}
+
+::: {.column width="55%"}
+
+| Index | Avg Nominal Return | SD Nominal | Avg Real Return | SD Real | Sharpe Ratio |
+|:------|-------------------:|-----------:|----------------:|--------:|-------------:|
+| **Prominent Artists** | 41.7% | 54.3% | **3.0%** | 21.5% | **0.14** |
+| **All Artists** | 40.2% | 50.5% | **2.1%** | 19.3% | **0.11** |
+| **Non-Prominent Artists** | 38.1% | 50.5% | **0.6%** | 20.3% | **0.03** |
+
+: {tbl-colwidths="[30,15,12,15,12,16]"}
+
+:::
+
+::: {.column width="45%"}
+
+### Key Insights
+
+- **High inflation environment**: 
+  - Nominal returns 38-42% vs real returns 0.6-3%
+  - Inflation eroded ~95% of nominal gains
+
+- **Prominent artists outperform**:
+  - 3% real return vs 0.6% non-prominent
+  - 5× better Sharpe ratio (0.14 vs 0.03)
+
+- **Extreme volatility**:
+  - 50-54% standard deviation
+  - Much higher than traditional assets
+
+- **Poor risk-adjusted returns**:
+  - All Sharpe ratios near zero
+  - Barely compensated for risk taken
+
+:::
+
+::::
+
+## Asset Performance Comparison (1989-2020)
+
+:::: {.columns}
+
+::: {.column width="60%"}
+
+| Asset | Nominal Return | Real Return | Volatility | Sharpe | Rank |
+|:------|---------------:|------------:|-----------:|-------:|:----:|
+| **BIST100** 📈 | 55.7% ± 105.8% | **13.1%** ± 59.8% | Extreme | 0.22 | 🥈 |
+| **Gold** 🥇 | 40.2% ± 37.7% | **4.1%** ± 17.1% | Moderate | **0.24** | 🥇 |
+| **Prominent Artists** 🎨 | 41.7% ± 54.3% | **3.0%** ± 21.5% | High | 0.14 | 3rd |
+| **All Artists** 🎨 | 40.2% ± 50.5% | **2.1%** ± 19.3% | High | 0.11 | 4th |
+| **Housing (KFE)** 🏠 | 11.5% ± 4.9% | **1.2%** ± 6.3% | Low | 0.19 | 5th |
+| **Non-Prominent** 🎨 | 38.1% ± 50.5% | **0.6%** ± 20.3% | High | 0.03 | 6th |
+
+: {.striped .hover tbl-colwidths="[25,18,13,12,8,8]"}
+
+:::
+
+::: {.column width="40%"}
+
+### Key Rankings
+
+**Best Risk-Adjusted** 🏆  
+1. Gold (0.24)
+2. BIST100 (0.22)
+3. Housing (0.19)
+
+**Worst Performers** 📉  
+4. Prominent Art (0.14)
+5. All Art (0.11)
+6. Non-Prominent Art (0.03)
+
+### Critical Gap
+- **Gold/Stocks**: 0.22-0.24 Sharpe
+- **Art**: 0.03-0.14 Sharpe
+- **Gap**: Art underperforms by 40-85%
+
+:::
+
+::::
+
+## Four Critical Insights
+
+::: {.incremental}
+
+1. **🥇 Gold dominates on risk-adjusted basis**
+   - Best Sharpe ratio (0.24) with moderate volatility
+   - 4.1% real return beats all art categories
+   - Volatility half that of stocks
+
+2. **📈 BIST100: High risk, high reward**
+   - Highest real return (13.1%) but extreme volatility (59.8%)
+   - 3× more volatile than gold, but 3× the return
+   - For aggressive investors only
+
+3. **🎨 Art severely underperforms traditional assets**
+   - Lower returns than gold (3% vs 4.1%)
+   - Higher volatility than gold (21.5% vs 17.1%)
+   - Sharpe ratios 40-85% worse than gold/stocks
+
+4. **🏠 Housing: The "stable underperformer"**
+   - Lowest volatility (6.3%) but also low returns (1.2%)
+   - Better Sharpe than art despite lower returns
+   - Data only available post-2010
+
+:::
+
+
+## Correlations 
+
+::: columns
+::: {.column width="75%"}
+![](fig/correlation_real.png) 
+:::
+
+::: {.column width="25%"} 
+- Art segments move together 
+- **Cannot diversify within the art market**
+  - When prominent art falls, all art tends to fall
+  - Mixing artist tiers doesn't reduce risk significantly
+- Weak Negative Correlation with Gold:  suggests diversification benefit
+- Weak positive correlation with stocks: mild diversification benefit
+:::
+:::
+
+## Conclusion 
+
+
+**This study provides comprehensive analysis of sale probability and hedonic price regressions for Turkish paintings (1989-2020), revealing:**
+
+:::: {.columns}
+
 ::: {.column width="50%"}
-![](fig/art_segments_comparison.png){fig-align="center"}
+
+**Performance Reality**
+- Art underperformed traditional assets across all metrics
+- Quality stratification extreme: 5× Sharpe ratio difference
+- Even prominent artists achieved only 3% real returns
+- Failed as inflation hedge in high-inflation environment
+
+**Market Mechanism**
+- Sale probability dominated by signature (+8-11pp) and reserve pricing (-7 to -14pp)
+- Extreme price sensitivity in non-prominent segment (-13.6pp per log increase)
+- Two distinct markets with different buyer behaviors
+
 :::
 
 ::: {.column width="50%"}
-![](fig/art_segments_vs_financials.png){fig-align="center"}
-:::
+
+**Diversification Potential**
+- Cannot diversify within art (0.56-0.91 internal correlations)
+- Modest benefit for equity portfolios (0.28 correlation with stocks)
+- Unreliable safe haven (weak negative gold correlation, high volatility)
+
+**Investment Verdict**
+- Art = consumption good with modest financial upside
+- Requires expert selectivity (prominent only)
+- Small portfolio allocation (<5%) justified only for diversification
+- Alternative assets (gold, stocks) superior on risk-adjusted basis
+
+**Future work**
+- Hedonic price indices are not truly stochastic
+- Alternative Kalman-filter based methods may provide additional insights
+- Dynamic relationship and causality analysis with macroeconomic and financial variables
+- Extend sample beyond 2020
 :::
 
-## Return Characteristics
+::::
+
+ 
+
+
 
 # Appendix {.appendix}
 
