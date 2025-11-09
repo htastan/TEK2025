@@ -111,3 +111,8 @@
   font-size: inherit !important; /* Reset font size, let other CSS control it */
   transform: none !important;     /* Disable scaling */
 }
+
+.reveal .footer {
+  text-align: right;
+  font-size: 0.5em;
+}
