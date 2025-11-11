@@ -4,7 +4,7 @@
 # author: "Hüseyin Taştan" 
 format:
   revealjs:
-    slide-number: c/t
+    #slide-number: c/t
     width: 1920
     height: 1080
     margin: 0.1 
@@ -360,19 +360,19 @@ This asymmetry motivates our segmented approach—pricing dynamics are fundament
 
 | Variable | All Artists | Prominent | Non-Prominent |
 |----------|-------------|-----------|----------------|
-| Signature | +8.0pp*** | +10.7pp*** | +4.8pp*** |
-| log(Size) | +6.6pp*** | +4.8pp*** | +9.0pp*** |
-| log(Opening Price) | −10.0pp*** | −7.1pp*** | −13.6pp*** |
-| log(Aspect Ratio) | −1.9pp** | −1.4pp | −2.3pp** |
+| Signature          | 0.08***  | 0.107*** | 0.048*** |
+| log(Size)          | 0.06***  | 0.048*** | 0.09*** |
+| log(Opening Price) | −0.10*** | -0.071*** | −0.136*** |
+| log(Aspect Ratio)  | −0.019** | -0.014    | −0.023** |
 
 
-1. **Signature matters most for prominent artists** (+10.7pp) but matters less for the rest (+4.8pp)
+1. **Signature matters most for prominent artists** 0.107 or +10.7 percentage points (pp) but matters less for the rest (+4.8pp)
 
 2. **Size matters most for non-prominent artists** (+9.0pp)  
 
 3. **Opening price is the dominant penalty** — especially for non-prominent (−13.6pp per log increase)
-   - A 10% higher opening prices decreases sale probability by 1.4pp for non-prominent segment 
-   - Auctioneers must price aggressively for this segment
+   - A 10% higher opening prices decreases sale probability by approximately 1.4pp for non-prominent segment 
+   - Unlike prominent works, non-prominent pieces require modest reserve pricing to ensure sales
 
 4. **Aspect ratio** — has a small but significant effect
 
@@ -387,6 +387,8 @@ Second, size has the opposite pattern—it matters MORE for non-prominent works,
 Third, and most important: opening price is the dominant penalty. A 10% higher reserve costs non-prominent works 1.4 percentage points in sale probability—nearly double the effect for prominent works. This means auctioneers must price aggressively, especially for lesser-known artists.
 
 Finally, notice that medium and material effects are economically modest—buyers prioritize the artist's reputation and artistic vision over physical materials.
+
+The −13.6pp elasticity suggests non-prominent works face highly price-sensitive buyers. Auctioneers face a trade-off: setting higher reserves may secure better prices conditional on sale, but sharply reduces sale probability. For this segment, the data suggest the optimal strategy leans toward conservative reserves to maximize transaction volume, especially given the reputational costs of unsold lots.
 :::
 
 
@@ -547,20 +549,25 @@ Key findings:
 
 ::::
 
+
+::: notes
+ 
+:::
+
 ## Asset Performance Comparison (1989-2020)
 
 :::: {.columns}
 
 ::: {.column width="60%"}
 
-| Asset | Nominal Return | Real Return | Volatility | Sharpe | Rank |
-|:------|---------------:|------------:|-----------:|-------:|:----:|
-| **BIST100** 📈 | 55.7% ± 105.8% | **13.1%** ± 59.8% | Extreme | 0.22 | 🥈 |
-| **Gold** 🥇 | 40.2% ± 37.7% | **4.1%** ± 17.1% | Moderate | **0.24** | 🥇 |
-| **Prominent Artists** 🎨 | 41.7% ± 54.3% | **3.0%** ± 21.5% | High | 0.14 | 3rd |
-| **All Artists** 🎨 | 40.2% ± 50.5% | **2.1%** ± 19.3% | High | 0.11 | 4th |
-| **Housing** 🏠 | 11.5% ± 4.9% | **1.2%** ± 6.3% | Low | 0.19 | 5th |
-| **Non-Prominent** 🎨 | 38.1% ± 50.5% | **0.6%** ± 20.3% | High | 0.03 | 6th |
+| Asset | Nominal Return | Real Return | Volatility | Sharpe | 
+|:------|---------------:|------------:|-----------:|-------:| 
+| **BIST100** 📈 | 55.7% ± 105.8% | **13.1%** ± 59.8% | Extreme | 0.22 | 
+| **Gold** 🥇 | 40.2% ± 37.7% | **4.1%** ± 17.1% | Moderate | **0.24** | 
+| **Prominent Artists** 🎨 | 41.7% ± 54.3% | **3.0%** ± 21.5% | High | 0.14 | 
+| **All Artists** 🎨 | 40.2% ± 50.5% | **2.1%** ± 19.3% | High | 0.11 | 
+| **Housing** 🏠 | 11.5% ± 4.9% | **1.2%** ± 6.3% | Low | 0.19 |  
+| **Non-Prominent** 🎨 | 38.1% ± 50.5% | **0.6%** ± 20.3% | High | 0.03 |  
 
 : {.striped .hover tbl-colwidths="[25,18,13,12,8,8]"}
 
@@ -569,23 +576,49 @@ Key findings:
 ::: {.column width="40%"}
 
 **Best Risk-Adjusted** 🏆  
+
 1. Gold (0.24)
 2. BIST100 (0.22)
 3. Housing (0.19)
 
 **Worst Performers** 📉  
+
 4. Prominent Art (0.14)
 5. All Art (0.11)
 6. Non-Prominent Art (0.03)
-
-### Critical Gap
-- **Gold/Stocks**: 0.22-0.24 Sharpe
-- **Art**: 0.03-0.14 Sharpe
-- **Gap**: Art underperforms by 40-85%
-
+ 
+Prominent art had decent raw returns, but achieved them through extreme volatility. When you account for risk, it falls behind even housing.
 :::
 
 ::::
+
+
+::: notes
+Let me compare Turkish art to traditional assets.  
+
+The table shows six assets ranked by Sharpe ratio on the right. Gold and stocks take the top two spots with Sharpe ratios above 0.20. Housing ranks third at 0.19 despite modest returns—its low volatility pays off.
+
+All three art categories fall to the bottom. Prominent art is particularly interesting: it achieved a respectable 3% real return—third among these assets—but its extreme volatility drops it to fourth when risk-adjusted, overtaken by housing.
+
+The gap is substantial: art underperforms traditional assets by 40-85% in risk-adjusted terms.
+:::
+
+
+<!-- ## Asset performance  -->
+
+<!--               Risk-Adjusted Returns (1989-2020) -->
+
+<!-- Sharpe Ratio -->
+<!--    0.24 |                    🥇 Gold -->
+<!--    0.22 |               📈 BIST100 -->
+<!--    0.19 |                        🏠 Housing -->
+<!--    0.14 |          🎨 Prominent Art -->
+<!--    0.11 |     🎨 All Art -->
+<!--    0.03 | 🎨 Non-Prom Art -->
+<!--         |________________________ -->
+<!--              Real Return (%) → -->
+<!--              1%    5%    10%   15% -->
+
 
 <!-- ## Four Critical Insights -->
 
@@ -623,57 +656,98 @@ Key findings:
 
 ::: {.column width="25%"} 
 - Art segments move together 
-- **Cannot diversify within the art market**
+- **Limited diversification within the art market**
   - When prominent art falls, all art tends to fall
   - Mixing artist tiers doesn't reduce risk significantly
 - Weak Negative Correlation with Gold:  suggests diversification benefit
-- Weak positive correlation with stocks: mild diversification benefit
+- Weak-moderate positive correlation with stocks (0.36): limited diversification benefit 
 :::
 :::
 
 ## Conclusion 
 
 
-**This study provides comprehensive analysis of sale probability and hedonic price regressions for Turkish paintings (1989-2020), revealing:**
+- Turkish paintings as a Consumption Good, Not an Investment
 
-:::: {.columns}
+- Investment Performance 
+  - Real returns: 0.6-3% annually (1989-2020)
+  - Sharpe ratios: 0.03-0.14 (art) vs. 0.19-0.24 (gold/stocks/housing)
+  - Art underperforms traditional assets by 40-85% in risk-adjusted terms
+  - High inflation eroded ~95% of nominal gains
 
-::: {.column width="50%"}
+- Market Mechanism
+  - Strong heterogeneity based on artist prominence
+  - Sale probability dominated by signature (+8-11pp) and reserve pricing (-7 to -14pp)
+  - Non-prominent art shows high sensitivity to opening price (-13.6pp per log increase)
 
-**Performance Reality**
-- Art underperformed traditional assets across all metrics
-- Quality stratification extreme: 5× Sharpe ratio difference
-- Even prominent artists achieved only 3% real returns
-- Failed as inflation hedge in high-inflation environment
+- Investment Implications
 
-**Market Mechanism**
-- Sale probability dominated by signature (+8-11pp) and reserve pricing (-7 to -14pp)
-- Extreme price sensitivity in non-prominent segment (-13.6pp per log increase)
-- Two distinct markets with different buyer behaviors
+   ✗ Poor risk-adjusted returns make art unsuitable as core investment
+   
+   ✓ Modest diversification benefit (negative correlation with gold, low correlation with stocks)
+   
+   ✓ Small allocation (<5%) justified only for consumption value and expert collectors
+   
+  → However, better alternatives exist (gold/stocks) for risk-adjusted returns
 
+
+::: notes
+Let me conclude with three key takeaways. [Pause]
+
+First, on investment performance: Turkish art delivered real returns of just 0.6 to 3% annually from 1989 to 2020. Sharpe ratios ranged from 0.03 to 0.14—far below gold, stocks, and even housing. Art underperforms traditional assets by 40 to 85% on a risk-adjusted basis. High inflation eroded about 95% of nominal gains.
+
+Second, on market mechanism: we found strong heterogeneity based on artist prominence. Sale probability is dominated by signature presence and reserve pricing. Non-prominent art shows extreme price sensitivity to opening prices.
+
+Third, investment implications: poor risk-adjusted returns make art unsuitable as a core investment. Diversification benefits are limited. A small allocation—under 5%—might be justified for consumption value or expert collectors, but for pure investment, gold and stocks are superior.
+
+Thank you. I'm happy to take questions.
 :::
 
-::: {.column width="50%"}
 
-**Diversification Potential**
-- Cannot diversify within art (0.56-0.91 internal correlations)
-- Modest benefit for equity portfolios (0.28 correlation with stocks)
-- Unreliable safe haven (weak negative gold correlation, high volatility)
 
-**Investment Verdict**
-- Art = consumption good with modest financial upside
-- Requires expert selectivity (prominent only)
-- Small portfolio allocation (<5%) justified only for diversification
-- Alternative assets (gold, stocks) superior on risk-adjusted basis
+<!-- ## Conclusion  -->
 
-**Future work**
-- Hedonic price indices are not truly stochastic
-- Alternative Kalman-filter based methods may provide additional insights
-- Dynamic relationship and causality analysis with macroeconomic and financial variables
-- Extend sample beyond 2020
-:::
 
-::::
+<!-- **This study provides comprehensive analysis of sale probability and hedonic price regressions for Turkish paintings (1989-2020), revealing:** -->
+
+<!-- :::: {.columns} -->
+
+<!-- ::: {.column width="50%"} -->
+
+<!-- **Performance Reality** -->
+<!-- - Art underperformed traditional assets across all metrics -->
+<!-- - Quality stratification extreme: 5× Sharpe ratio difference -->
+<!-- - Even prominent artists achieved only 3% real returns -->
+<!-- - Failed as inflation hedge in high-inflation environment -->
+
+<!-- **Market Mechanism** -->
+<!-- - Sale probability dominated by signature (+8-11pp) and reserve pricing (-7 to -14pp) -->
+<!-- - Extreme price sensitivity in non-prominent segment (-13.6pp per log increase) -->
+<!-- - Two distinct markets with different buyer behaviors -->
+
+<!-- ::: -->
+
+<!-- ::: {.column width="50%"} -->
+
+<!-- **Diversification Potential** -->
+<!-- - Cannot diversify within art (0.56-0.91 internal correlations) -->
+<!-- - Modest benefit for equity portfolios (0.28 correlation with stocks) -->
+<!-- - Unreliable safe haven (weak negative gold correlation, high volatility) -->
+
+<!-- **Investment Verdict** -->
+<!-- - Art = consumption good with modest financial upside -->
+<!-- - Requires expert selectivity (prominent only) -->
+<!-- - Small portfolio allocation (<5%) justified only for diversification -->
+<!-- - Alternative assets (gold, stocks) superior on risk-adjusted basis -->
+
+<!-- **Future work** -->
+<!-- - Hedonic price indices are not truly stochastic -->
+<!-- - Alternative Kalman-filter based methods may provide additional insights -->
+<!-- - Dynamic relationship and causality analysis with macroeconomic and financial variables -->
+<!-- - Extend sample beyond 2020 -->
+<!-- ::: -->
+
+<!-- :::: -->
 
  
 

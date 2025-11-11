@@ -712,37 +712,37 @@ P(\text{sold}_i = 1 | \mathbf{X}_i) &amp;= \Phi(\mathbf{X}_i' \boldsymbol{\beta}
 <tbody>
 <tr class="odd">
 <td>Signature</td>
-<td>+8.0pp***</td>
-<td>+10.7pp***</td>
-<td>+4.8pp***</td>
+<td>0.08***</td>
+<td>0.107***</td>
+<td>0.048***</td>
 </tr>
 <tr class="even">
 <td>log(Size)</td>
-<td>+6.6pp***</td>
-<td>+4.8pp***</td>
-<td>+9.0pp***</td>
+<td>0.06***</td>
+<td>0.048***</td>
+<td>0.09***</td>
 </tr>
 <tr class="odd">
 <td>log(Opening Price)</td>
-<td>−10.0pp***</td>
-<td>−7.1pp***</td>
-<td>−13.6pp***</td>
+<td>−0.10***</td>
+<td>-0.071***</td>
+<td>−0.136***</td>
 </tr>
 <tr class="even">
 <td>log(Aspect Ratio)</td>
-<td>−1.9pp**</td>
-<td>−1.4pp</td>
-<td>−2.3pp**</td>
+<td>−0.019**</td>
+<td>-0.014</td>
+<td>−0.023**</td>
 </tr>
 </tbody>
 </table>
 <ol type="1">
-<li><p><strong>Signature matters most for prominent artists</strong> (+10.7pp) but matters less for the rest (+4.8pp)</p></li>
+<li><p><strong>Signature matters most for prominent artists</strong> 0.107 or +10.7 percentage points (pp) but matters less for the rest (+4.8pp)</p></li>
 <li><p><strong>Size matters most for non-prominent artists</strong> (+9.0pp)</p></li>
 <li><p><strong>Opening price is the dominant penalty</strong> — especially for non-prominent (−13.6pp per log increase)</p>
 <ul>
-<li>A 10% higher opening prices decreases sale probability by 1.4pp for non-prominent segment</li>
-<li>Auctioneers must price aggressively for this segment</li>
+<li>A 10% higher opening prices decreases sale probability by approximately 1.4pp for non-prominent segment</li>
+<li>Unlike prominent works, non-prominent pieces require modest reserve pricing to ensure sales</li>
 </ul></li>
 <li><p><strong>Aspect ratio</strong> — has a small but significant effect</p></li>
 <li><p><strong>Medium, material effects</strong>, while statistically significant, are economically modest. This suggests buyers prioritize the <strong>artistic medium and the artist’s reputation</strong> far more than physical durability or presentation format.</p></li>
@@ -752,6 +752,7 @@ P(\text{sold}_i = 1 | \mathbf{X}_i) &amp;= \Phi(\mathbf{X}_i' \boldsymbol{\beta}
 <p>Second, size has the opposite pattern—it matters MORE for non-prominent works, at 9 percentage points versus 5. This suggests non-prominent buyers prioritize visual presence and decorative value.</p>
 <p>Third, and most important: opening price is the dominant penalty. A 10% higher reserve costs non-prominent works 1.4 percentage points in sale probability—nearly double the effect for prominent works. This means auctioneers must price aggressively, especially for lesser-known artists.</p>
 <p>Finally, notice that medium and material effects are economically modest—buyers prioritize the artist’s reputation and artistic vision over physical materials.</p>
+<p>The −13.6pp elasticity suggests non-prominent works face highly price-sensitive buyers. Auctioneers face a trade-off: setting higher reserves may secure better prices conditional on sale, but sharply reduces sale probability. For this segment, the data suggest the optimal strategy leans toward conservative reserves to maximize transaction volume, especially given the reputational costs of unsold lots.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -950,18 +951,30 @@ p_{it} = \beta x_i + \sum_{t=1}^{T} \gamma_t D_t + \varepsilon_{it},
 </ul></li>
 </ul>
 </div></div>
+<aside class="notes">
+
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="asset-performance-comparison-1989-2020" class="slide level2">
 <h2>Asset Performance Comparison (1989-2020)</h2>
 <div class="columns">
 <div class="column" style="width:60%;">
-<table class="table-striped table-hover caption-top" style="width:84%;">
+<table class="table-striped table-hover caption-top" style="width:76%;">
 <colgroup>
 <col style="width: 25%">
 <col style="width: 18%">
 <col style="width: 13%">
 <col style="width: 12%">
-<col style="width: 8%">
 <col style="width: 8%">
 </colgroup>
 <thead>
@@ -971,7 +984,6 @@ p_{it} = \beta x_i + \sum_{t=1}^{T} \gamma_t D_t + \varepsilon_{it},
 <th style="text-align: right;">Real Return</th>
 <th style="text-align: right;">Volatility</th>
 <th style="text-align: right;">Sharpe</th>
-<th style="text-align: center;">Rank</th>
 </tr>
 </thead>
 <tbody>
@@ -981,7 +993,6 @@ p_{it} = \beta x_i + \sum_{t=1}^{T} \gamma_t D_t + \varepsilon_{it},
 <td style="text-align: right;"><strong>13.1%</strong> ± 59.8%</td>
 <td style="text-align: right;">Extreme</td>
 <td style="text-align: right;">0.22</td>
-<td style="text-align: center;">🥈</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><strong>Gold</strong> 🥇</td>
@@ -989,7 +1000,6 @@ p_{it} = \beta x_i + \sum_{t=1}^{T} \gamma_t D_t + \varepsilon_{it},
 <td style="text-align: right;"><strong>4.1%</strong> ± 17.1%</td>
 <td style="text-align: right;">Moderate</td>
 <td style="text-align: right;"><strong>0.24</strong></td>
-<td style="text-align: center;">🥇</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><strong>Prominent Artists</strong> 🎨</td>
@@ -997,7 +1007,6 @@ p_{it} = \beta x_i + \sum_{t=1}^{T} \gamma_t D_t + \varepsilon_{it},
 <td style="text-align: right;"><strong>3.0%</strong> ± 21.5%</td>
 <td style="text-align: right;">High</td>
 <td style="text-align: right;">0.14</td>
-<td style="text-align: center;">3rd</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><strong>All Artists</strong> 🎨</td>
@@ -1005,7 +1014,6 @@ p_{it} = \beta x_i + \sum_{t=1}^{T} \gamma_t D_t + \varepsilon_{it},
 <td style="text-align: right;"><strong>2.1%</strong> ± 19.3%</td>
 <td style="text-align: right;">High</td>
 <td style="text-align: right;">0.11</td>
-<td style="text-align: center;">4th</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><strong>Housing</strong> 🏠</td>
@@ -1013,7 +1021,6 @@ p_{it} = \beta x_i + \sum_{t=1}^{T} \gamma_t D_t + \varepsilon_{it},
 <td style="text-align: right;"><strong>1.2%</strong> ± 6.3%</td>
 <td style="text-align: right;">Low</td>
 <td style="text-align: right;">0.19</td>
-<td style="text-align: center;">5th</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><strong>Non-Prominent</strong> 🎨</td>
@@ -1021,22 +1028,52 @@ p_{it} = \beta x_i + \sum_{t=1}^{T} \gamma_t D_t + \varepsilon_{it},
 <td style="text-align: right;"><strong>0.6%</strong> ± 20.3%</td>
 <td style="text-align: right;">High</td>
 <td style="text-align: right;">0.03</td>
-<td style="text-align: center;">6th</td>
 </tr>
 </tbody>
 </table>
 </div><div class="column" style="width:40%;">
-<p><strong>Best Risk-Adjusted</strong> 🏆<br>
-1. Gold (0.24) 2. BIST100 (0.22) 3. Housing (0.19)</p>
-<p><strong>Worst Performers</strong> 📉<br>
-4. Prominent Art (0.14) 5. All Art (0.11) 6. Non-Prominent Art (0.03)</p>
-<h3 id="critical-gap">Critical Gap</h3>
-<ul>
-<li><strong>Gold/Stocks</strong>: 0.22-0.24 Sharpe</li>
-<li><strong>Art</strong>: 0.03-0.14 Sharpe</li>
-<li><strong>Gap</strong>: Art underperforms by 40-85%</li>
-</ul>
+<p><strong>Best Risk-Adjusted</strong> 🏆</p>
+<ol type="1">
+<li>Gold (0.24)</li>
+<li>BIST100 (0.22)</li>
+<li>Housing (0.19)</li>
+</ol>
+<p><strong>Worst Performers</strong> 📉</p>
+<ol start="4" type="1">
+<li>Prominent Art (0.14)</li>
+<li>All Art (0.11)</li>
+<li>Non-Prominent Art (0.03)</li>
+</ol>
+<p>Prominent art had decent raw returns, but achieved them through extreme volatility. When you account for risk, it falls behind even housing.</p>
 </div></div>
+<aside class="notes">
+<p>Let me compare Turkish art to traditional assets.</p>
+<p>The table shows six assets ranked by Sharpe ratio on the right. Gold and stocks take the top two spots with Sharpe ratios above 0.20. Housing ranks third at 0.19 despite modest returns—its low volatility pays off.</p>
+<p>All three art categories fall to the bottom. Prominent art is particularly interesting: it achieved a respectable 3% real return—third among these assets—but its extreme volatility drops it to fourth when risk-adjusted, overtaken by housing.</p>
+<p>The gap is substantial: art underperforms traditional assets by 40-85% in risk-adjusted terms.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<!-- ## Asset performance  -->
+<!--               Risk-Adjusted Returns (1989-2020) -->
+<!-- Sharpe Ratio -->
+<!--    0.24 |                    🥇 Gold -->
+<!--    0.22 |               📈 BIST100 -->
+<!--    0.19 |                        🏠 Housing -->
+<!--    0.14 |          🎨 Prominent Art -->
+<!--    0.11 |     🎨 All Art -->
+<!--    0.03 | 🎨 Non-Prom Art -->
+<!--         |________________________ -->
+<!--              Real Return (%) → -->
+<!--              1%    5%    10%   15% -->
 <!-- ## Four Critical Insights -->
 <!-- ::: {.incremental} -->
 <!-- 1. **🥇 Gold dominates on risk-adjusted basis** -->
@@ -1065,28 +1102,87 @@ p_{it} = \beta x_i + \sum_{t=1}^{T} \gamma_t D_t + \varepsilon_{it},
 </div><div class="column" style="width:25%;">
 <ul>
 <li>Art segments move together</li>
-<li><strong>Cannot diversify within the art market</strong>
+<li><strong>Limited diversification within the art market</strong>
 <ul>
 <li>When prominent art falls, all art tends to fall</li>
 <li>Mixing artist tiers doesn’t reduce risk significantly</li>
 </ul></li>
 <li>Weak Negative Correlation with Gold: suggests diversification benefit</li>
-<li>Weak positive correlation with stocks: mild diversification benefit</li>
+<li>Weak-moderate positive correlation with stocks (0.36): limited diversification benefit</li>
 </ul>
 </div></div>
 </section>
 <section id="conclusion" class="slide level2">
 <h2>Conclusion</h2>
-<p><strong>This study provides comprehensive analysis of sale probability and hedonic price regressions for Turkish paintings (1989-2020), revealing:</strong></p>
-<div class="columns">
-<div class="column" style="width:50%;">
-<p><strong>Performance Reality</strong> - Art underperformed traditional assets across all metrics - Quality stratification extreme: 5× Sharpe ratio difference - Even prominent artists achieved only 3% real returns - Failed as inflation hedge in high-inflation environment</p>
-<p><strong>Market Mechanism</strong> - Sale probability dominated by signature (+8-11pp) and reserve pricing (-7 to -14pp) - Extreme price sensitivity in non-prominent segment (-13.6pp per log increase) - Two distinct markets with different buyer behaviors</p>
-</div><div class="column" style="width:50%;">
-<p><strong>Diversification Potential</strong> - Cannot diversify within art (0.56-0.91 internal correlations) - Modest benefit for equity portfolios (0.28 correlation with stocks) - Unreliable safe haven (weak negative gold correlation, high volatility)</p>
-<p><strong>Investment Verdict</strong> - Art = consumption good with modest financial upside - Requires expert selectivity (prominent only) - Small portfolio allocation (&lt;5%) justified only for diversification - Alternative assets (gold, stocks) superior on risk-adjusted basis</p>
-<p><strong>Future work</strong> - Hedonic price indices are not truly stochastic - Alternative Kalman-filter based methods may provide additional insights - Dynamic relationship and causality analysis with macroeconomic and financial variables - Extend sample beyond 2020</p>
-</div></div>
+<ul>
+<li><p>Turkish paintings as a Consumption Good, Not an Investment</p></li>
+<li><p>Investment Performance</p>
+<ul>
+<li>Real returns: 0.6-3% annually (1989-2020)</li>
+<li>Sharpe ratios: 0.03-0.14 (art) vs.&nbsp;0.19-0.24 (gold/stocks/housing)</li>
+<li>Art underperforms traditional assets by 40-85% in risk-adjusted terms</li>
+<li>High inflation eroded ~95% of nominal gains</li>
+</ul></li>
+<li><p>Market Mechanism</p>
+<ul>
+<li>Strong heterogeneity based on artist prominence</li>
+<li>Sale probability dominated by signature (+8-11pp) and reserve pricing (-7 to -14pp)</li>
+<li>Non-prominent art shows high sensitivity to opening price (-13.6pp per log increase)</li>
+</ul></li>
+<li><p>Investment Implications</p>
+<p>✗ Poor risk-adjusted returns make art unsuitable as core investment</p>
+<p>✓ Modest diversification benefit (negative correlation with gold, low correlation with stocks)</p>
+<p>✓ Small allocation (&lt;5%) justified only for consumption value and expert collectors</p>
+<p>→ However, better alternatives exist (gold/stocks) for risk-adjusted returns</p></li>
+</ul>
+<aside class="notes">
+<p>Let me conclude with three key takeaways. [Pause]</p>
+<p>First, on investment performance: Turkish art delivered real returns of just 0.6 to 3% annually from 1989 to 2020. Sharpe ratios ranged from 0.03 to 0.14—far below gold, stocks, and even housing. Art underperforms traditional assets by 40 to 85% on a risk-adjusted basis. High inflation eroded about 95% of nominal gains.</p>
+<p>Second, on market mechanism: we found strong heterogeneity based on artist prominence. Sale probability is dominated by signature presence and reserve pricing. Non-prominent art shows extreme price sensitivity to opening prices.</p>
+<p>Third, investment implications: poor risk-adjusted returns make art unsuitable as a core investment. Diversification benefits are limited. A small allocation—under 5%—might be justified for consumption value or expert collectors, but for pure investment, gold and stocks are superior.</p>
+<p>Thank you. I’m happy to take questions.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<!-- ## Conclusion  -->
+<!-- **This study provides comprehensive analysis of sale probability and hedonic price regressions for Turkish paintings (1989-2020), revealing:** -->
+<!-- :::: {.columns} -->
+<!-- ::: {.column width="50%"} -->
+<!-- **Performance Reality** -->
+<!-- - Art underperformed traditional assets across all metrics -->
+<!-- - Quality stratification extreme: 5× Sharpe ratio difference -->
+<!-- - Even prominent artists achieved only 3% real returns -->
+<!-- - Failed as inflation hedge in high-inflation environment -->
+<!-- **Market Mechanism** -->
+<!-- - Sale probability dominated by signature (+8-11pp) and reserve pricing (-7 to -14pp) -->
+<!-- - Extreme price sensitivity in non-prominent segment (-13.6pp per log increase) -->
+<!-- - Two distinct markets with different buyer behaviors -->
+<!-- ::: -->
+<!-- ::: {.column width="50%"} -->
+<!-- **Diversification Potential** -->
+<!-- - Cannot diversify within art (0.56-0.91 internal correlations) -->
+<!-- - Modest benefit for equity portfolios (0.28 correlation with stocks) -->
+<!-- - Unreliable safe haven (weak negative gold correlation, high volatility) -->
+<!-- **Investment Verdict** -->
+<!-- - Art = consumption good with modest financial upside -->
+<!-- - Requires expert selectivity (prominent only) -->
+<!-- - Small portfolio allocation (<5%) justified only for diversification -->
+<!-- - Alternative assets (gold, stocks) superior on risk-adjusted basis -->
+<!-- **Future work** -->
+<!-- - Hedonic price indices are not truly stochastic -->
+<!-- - Alternative Kalman-filter based methods may provide additional insights -->
+<!-- - Dynamic relationship and causality analysis with macroeconomic and financial variables -->
+<!-- - Extend sample beyond 2020 -->
+<!-- ::: -->
+<!-- :::: -->
 </section></section>
 <section>
 <section id="appendix" class="title-slide slide level1 appendix center">
@@ -2249,7 +2345,7 @@ p_{it} = \beta x_i + \sum_{t=1}^{T} \gamma_t D_t + \varepsilon_{it},
         progress: true,
 
         // Display the page number of the current slide
-        slideNumber: 'c/t',
+        slideNumber: false,
 
         // 'all', 'print', or 'speaker'
         showSlideNumber: 'all',
