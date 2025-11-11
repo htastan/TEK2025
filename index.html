@@ -356,7 +356,7 @@ Outline
 </h3>
 <ul>
 <li>Introduction</li>
-<li>Data and Descriptive Statistics</li>
+<li>Data</li>
 <li>Sale Model<br>
 </li>
 <li>Hedonic Regression Model</li>
@@ -378,13 +378,13 @@ Outline
 <ul>
 <li>Liquidity dimension:
 <ul>
-<li>What characteristics predict whether an artwork sells? How do sale probabilities differ by artist prominence?</li>
+<li>What characteristics predict whether an artwork sells?</li>
+<li>How do sale probabilities differ by artist prominence?</li>
 </ul></li>
 <li>Price dimension:
 <ul>
 <li>What explains auction prices?</li>
 <li>How do price determinants differ by artist prominence?</li>
-<li>Hedonic price index and return to art investments.</li>
 </ul></li>
 </ul></li>
 <li>Data: Turkish paintings auction data, 1989-2020</li>
@@ -395,23 +395,25 @@ Outline
 <li>Sale probability analysis:
 <ul>
 <li>Probit model of sale (1/0)</li>
-<li>Predicts: Artwork characteristics → Sale probability</li>
+<li>Predicts: Artwork characteristics → Sale probability
+<ul>
 <li>By segment: Prominent/Elite artists vs.&nbsp;the rest</li>
+</ul></li>
 </ul></li>
 <li>Price analysis:
 <ul>
 <li>Hedonic regression of log(Sale price)</li>
-<li>Predicts: Artwork characteristics → Price levels</li>
+<li>Predicts: Artwork characteristics → Price levels
+<ul>
+<li>Hedonic price index and return to art investments.</li>
 <li>By segment: Prominent vs.&nbsp;non-prominent</li>
 </ul></li>
-<li>Do liquidity and price models yield different insights?</li>
-<li>How do segments differ in each dimension?</li>
+</ul></li>
 </ul>
 </div></div>
 </section>
-<section id="introduction-1" class="slide level2">
-<h2>Introduction</h2>
-<p>Overview of the literature</p>
+<section id="introduction-overview-of-the-literature" class="slide level2">
+<h2>Introduction (Overview of the literature)</h2>
 <div class="columns">
 <div class="column fragment" style="width:50%;">
 <p><strong>Global</strong></p>
@@ -426,20 +428,26 @@ Outline
 <ul>
 <li>Positive real returns but Sharpe ratios lag equities</li>
 <li>Valuable diversification benefit: low correlation with stocks/bonds</li>
-<li>Heterogeneous returns across segments: Modern art outperforms contemporary; investment-grade outperforms speculative</li>
+<li>Heterogeneous returns across segments:
+<ul>
+<li>Modern art outperforms contemporary (established &gt; emerging artists)</li>
+<li>Investment-grade (top tier, liquid, “blue-chip”) outperforms speculative (lower tier, illiquid, uncertain value) (quality premium)</li>
+</ul></li>
 </ul></li>
 </ul>
 </div><div class="column fragment" style="width:50%;">
 <p><strong>Studies on Turkish art markets</strong></p>
 <ul>
-<li>Literature largely focuses on western art markets, Limited academic work on emerging market art</li>
-<li>Turkish literature growing. Current evidence suggests:
+<li>Limited academic work on emerging market art; Turkish literature growing.</li>
+<li>Based on aggregate hedonic art indices, current evidence suggests:
 <ul>
-<li>Small positive real returns and diversification benefits (Atukeren and Seçkin (2006)</li>
-<li>Turkish market integrated with international art markets (Atukeren and Seçkin (2012))</li>
-<li>Underperformance versus domestic equities but outperformance versus global aggregates with feedback to the stock market (Demir et al.&nbsp;(2018)),</li>
-<li>Partial hedge/safe‑haven behavior during crises (Öztürkkal and Togan-Eğrican (2020))</li>
+<li>Small positive real returns and diversification benefits (Atukeren and Seçkin 2006)</li>
+<li>Integration with international art markets (Atukeren and Seçkin 2012)</li>
+<li>Underperformance vs.&nbsp;domestic equities but outperformance vs global aggregates (Demir et al.&nbsp;2018),</li>
+<li>Some protection during financial crises (partial hedge/safe‑haven) during crises (Öztürkkal and Togan-Eğrican 2020)<br>
+</li>
 </ul></li>
+<li>No examination of quality stratification/market segmentation within Turkish paintings auction market</li>
 </ul>
 </div></div>
 </section></section>
@@ -454,16 +462,16 @@ Outline
 <h2>Dataset Overview</h2>
 <div class="columns">
 <div class="column fragment" style="width:50%;">
-<p><strong>Source and contents</strong></p>
+<p><strong>Source and span</strong></p>
 <ul>
-<li>Data is scraped from the www.lebriz.com which maintains comprehensive archive of art auctions.</li>
+<li>Data is scraped from the www.lebriz.com which maintains a comprehensive archive of art auctions.</li>
 <li>Discontinued in 2023, but contains data spanning 1990s to 2020</li>
 <li>We focus on paintings only (exclude sculpture, lithography, editions, etc.)</li>
 <li>Transaction level data on auction items</li>
 <li>Not repeat sales</li>
 </ul>
 </div><div class="column fragment" style="width:50%;">
-<p><strong>Variables</strong></p>
+<p><strong>Variables and content</strong></p>
 <ul>
 <li>Artist name, auction house, auction date</li>
 <li>Artwork characteristics: dimensions (width and height), type of paintings (oil on canvas, watercolor on paper, oil on wood, acrylic on canvas, etc.), whether signed or not,</li>
@@ -475,20 +483,19 @@ Outline
 <section id="artists" class="slide level2">
 <h2>Artists</h2>
 <ul>
-<li>There is no established list of blue-chip artists.</li>
-<li>Instead this study relies on a market-based reproducible metrics to determine elite/prominent artists</li>
-<li>This is to see if there is heterogeneity in the art auction markets based on artists</li>
-<li>Anonymous artworks and artists with less than <span class="math inline">\(15\)</span> items are excluded.</li>
-<li>The ranking is based on the following Prominence Score (PS): <span class="math display">\[
+<li><p>How do we quantify artist heterogeneity in auction markets? No established list of “blue-chip” Turkish artists.</p></li>
+<li><p>Solution: develop a market-based reproducible metrics to determine elite/prominent artists</p></li>
+<li><p>The ranking is based on the following Prominence Score (PS): <span class="math display">\[
 PS_i = 0.3 \times \text{Norm}(\bar{P}_i) + 0.3 \times \text{Norm}(V_i) + 0.2 \times \text{Norm}(N_i) + 0.2 \times \text{Norm}(P_{\max,i})
-\]</span></li>
-<li><span class="math inline">\(\bar{P}_i\)</span>: average sale price,</li>
-<li><span class="math inline">\(V_i\)</span>: total market volume (cumulative sum of all sales)</li>
-<li><span class="math inline">\(N_i\)</span>: total number of transactions</li>
-<li><span class="math inline">\(P_{\max,i}\)</span>: maximum sale price</li>
-<li><span class="math inline">\(Norm(x)\)</span> is the min-max normalization to (0,1) defined as <span class="math display">\[
+\]</span> where</p></li>
+<li><p><span class="math inline">\(\bar{P}_i\)</span>: average sale price,</p></li>
+<li><p><span class="math inline">\(V_i\)</span>: total market volume (cumulative sum of all sales)</p></li>
+<li><p><span class="math inline">\(N_i\)</span>: total number of transactions</p></li>
+<li><p><span class="math inline">\(P_{\max,i}\)</span>: maximum sale price</p></li>
+<li><p><span class="math inline">\(Norm(x)\)</span> is the min-max normalization to (0,1) defined as <span class="math display">\[
 \text{Norm}(x) = \frac{x - \min(x)}{\max(x) - \min(x)}
-\]</span></li>
+\]</span></p></li>
+<li><p>Anonymous artworks and artists with less than 15 items are excluded.</p></li>
 </ul>
 </section>
 <section id="prominent-artists" class="slide level2">
@@ -543,70 +550,13 @@ PS_i = 0.3 \times \text{Norm}(\bar{P}_i) + 0.3 \times \text{Norm}(V_i) + 0.2 \ti
 </tr>
 </tbody>
 </table>
+<p><strong>Market Concentration:</strong></p>
 <ul>
-<li><p>Includes Anonymous artists and those with lots&lt;15 (classified as nonprominent).</p></li>
-<li><p><strong>Key Pattern:</strong> The top 100 artists (20.5% of population) generate 79.6% of total market volume, with 4.1× higher average prices and 15.2 percentage points higher sale rates. This concentration motivates separate econometric analysis by segment.</p></li>
-<li><p>In the sales and hedonic price modeling we exclude Anonymous and nlots&lt;15 groups.</p></li>
+<li>Top 100 artists (20.5% of population) generate <strong>79.6% of total market volume</strong></li>
+<li>Prominent artists command <strong>4× higher prices</strong> and <strong>15 pp higher sale rates</strong></li>
 </ul>
-</section>
-<section id="liquidity-by-artist-group" class="slide level2">
-<h2>Liquidity by Artist group</h2>
-<table class="caption-top">
-<caption>Sale rates by artist group (1989-2020)</caption>
-<thead>
-<tr class="header">
-<th>Artist Group</th>
-<th style="text-align: right;">N Offered</th>
-<th style="text-align: right;">N Sold</th>
-<th style="text-align: right;">N Unsold</th>
-<th style="text-align: right;">Sale Rate</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Prominent</td>
-<td style="text-align: right;">43,020</td>
-<td style="text-align: right;">31,748</td>
-<td style="text-align: right;">11,272</td>
-<td style="text-align: right;">73.8%</td>
-</tr>
-<tr class="even">
-<td>Non-Prominent</td>
-<td style="text-align: right;">40,450</td>
-<td style="text-align: right;">24,766</td>
-<td style="text-align: right;">15,684</td>
-<td style="text-align: right;">61.2%</td>
-</tr>
-<tr class="odd">
-<td>Anonymous</td>
-<td style="text-align: right;">3,181</td>
-<td style="text-align: right;">1,637</td>
-<td style="text-align: right;">1,544</td>
-<td style="text-align: right;">51.5%</td>
-</tr>
-<tr class="even">
-<td>Other (nlots&lt;15)</td>
-<td style="text-align: right;">13,856</td>
-<td style="text-align: right;">7,312</td>
-<td style="text-align: right;">6,544</td>
-<td style="text-align: right;">52.8%</td>
-</tr>
-<tr class="odd">
-<td><strong>Total</strong></td>
-<td style="text-align: right;"><strong>100,507</strong></td>
-<td style="text-align: right;"><strong>65,463</strong></td>
-<td style="text-align: right;"><strong>35,044</strong></td>
-<td style="text-align: right;"><strong>65.1%</strong></td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li><strong>Prominent artists</strong> have the highest sale rate (73.8%)</li>
-<li><strong>Anonymous artworks</strong> have the lowest (51.5%)</li>
-<li><strong>Non-prominent</strong> but established artists fall in the middle (61.2%) indicating meaningful market depth.</li>
-<li><strong>Artists with few items</strong> also have low sale rates (52.8%) which may be a sign of limited marketing attention, weaker collector demand, and greater uncertainty about quality or attribution.</li>
-<li>Overall market sale rate: 65.1%</li>
-</ul>
+<p><strong>Implication:</strong> Strong market segmentation motivates separate econometric modeling by artist prominence</p>
+<p>Note: table includes Anonymous artists and those with lots&lt;15 (classified as nonprominent).</p>
 </section>
 <section id="section-2" class="slide level2">
 <h2></h2>
@@ -616,7 +566,7 @@ PS_i = 0.3 \times \text{Norm}(\bar{P}_i) + 0.3 \times \text{Norm}(V_i) + 0.2 \ti
 </div><div class="column" style="width:20%;">
 <ul>
 <li>Includes both <strong>historical masters</strong> (19th/20th century) and <strong>established contemporary figures</strong></li>
-<li>Osman Hamid Bey is at the top with $5.5M sale, followed by Fahrelnisa Zeid, Erol Akyavaş, Şeker Ahmet Paşa</li>
+<li>Osman Hamdi Bey is at the top with $5.5M sale, followed by Fahrelnisa Zeid, Erol Akyavaş, Şeker Ahmet Paşa</li>
 <li>Remaining 60 artists range $10K-220K</li>
 <li>Among living artists, Taner Ceylan is at the top followed by Ergin İnan, Canan Tolon, Neş’e Erdok</li>
 </ul>
@@ -633,9 +583,19 @@ PS_i = 0.3 \times \text{Norm}(\bar{P}_i) + 0.3 \times \text{Norm}(V_i) + 0.2 \ti
 </figure>
 </div>
 </div><div class="column" style="width:30%;">
-<p><strong>1989-1995:</strong> - Both groups swing a lot, minimal gap</p>
-<p><strong>1996-2005:</strong> - Prominent stabilize at 70% - Non-prominent volatile 50-70% - Gap widens</p>
-<p><strong>2006-2020:</strong> - Prominent: resilient 70-85% - Non-prominent: trending lower - Gap persists</p>
+<p><strong>1989-1995:</strong> Both groups swing a lot, minimal gap</p>
+<p><strong>1996-2005:</strong></p>
+<ul>
+<li>Prominent stabilize at 70%</li>
+<li>Non-prominent volatile 50-70%</li>
+<li>Gap widens</li>
+</ul>
+<p><strong>2006-2020:</strong></p>
+<ul>
+<li>Prominent: resilient 70-85%</li>
+<li>Non-prominent: trending lower</li>
+<li>Gap persists</li>
+</ul>
 </div></div>
 </section>
 <section id="price-distribution-by-artist-segment" class="slide level2">
@@ -644,9 +604,19 @@ PS_i = 0.3 \times \text{Norm}(\bar{P}_i) + 0.3 \times \text{Norm}(V_i) + 0.2 \ti
 <div class="column" style="width:75%;">
 <p><img data-src="fig/sale_price_hist.png"></p>
 </div><div class="column" style="width:25%;">
-<p><strong>Prominent Artists (Teal):</strong> - Peak: $5,000–$20,000 - Right-skewed distribution - Higher median price - Concentrated in mid-to-high range</p>
-<p><strong>Non-Prominent (Orange):</strong> - Peak: $800–$2,000 - Left-skewed toward lower prices - Wider spread - More price variability</p>
-<p>Prominent artists show <strong>clustering at higher price points</strong>, while non-prominent show <strong>dispersed, lower valuations</strong>.</p>
+<p><strong>Prominent Artists (Teal):</strong></p>
+<ul>
+<li>Median: $5,442 Mean: $17412 SD: $75593</li>
+<li>Wider price range (P10–P90: $935–$35,714)</li>
+<li>Includes masterpieces reaching $5.5M</li>
+</ul>
+<p><strong>Non-Prominent (Orange):</strong></p>
+<ul>
+<li>Median: $1,311 Mean: $3028 SD: $6669<br>
+</li>
+<li>Narrower absolute range (P10–P90: $271–$6,667)</li>
+<li>Few works exceed $50K</li>
+</ul>
 </div></div>
 </section></section>
 <section>
@@ -683,7 +653,39 @@ P(\text{sold}_i = 1 | \mathbf{X}_i) &amp;= \Phi(\mathbf{X}_i' \boldsymbol{\beta}
 <h2>Sale Model Probit Results</h2>
 
 <img data-src="fig/probit_coef_plot.png" class="r-stretch"><aside class="notes">
-<p>Key findings: - All coefficients have the same sign across all three models - log(Size) is consistently positive and significant - log(Opening Price) is consistently negative (U-shaped relationship confirms this) - Prominent artists benefit from a “Signed” premium (~0.31 coefficient) - Canvas material has a positive effect on sale probability</p>
+<p>The key patterns: Signatures boost sale probability, especially for prominent artists. Larger works sell better, particularly in the non-prominent segment. And opening price has a strong negative effect—overpricing kills sales.</p>
+<p>Notice the segmented models reveal important differences. The opening price effect is MORE negative for non-prominent works, meaning these buyers are especially price-sensitive. Let’s explore that relationship next.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="opening-price-vs-sale-probability" class="slide level2">
+<h2>Opening Price vs Sale Probability</h2>
+<div class="columns">
+<div class="column" style="width:80%;">
+<p><img data-src="fig/sale_opening_price1.png" style="width:70.0%"></p>
+<ul>
+<li>Buyers discount heavily on non-prominent names; high reserves signal overvaluation or weak seller credibility</li>
+<li>At extreme prices, high reserves on prominent works signal confidence (attraction)</li>
+</ul>
+</div><div class="column" style="width:20%;">
+<ul>
+<li>Aggressive opening prices filter serious collectors; for non-prominent segment this shrinks the addressable market; for promnent segment, it selects the most committed buyers</li>
+</ul>
+</div></div>
+<aside class="notes">
+<p>This shows predicted sale probability versus opening price.</p>
+<p>Notice the dramatic difference between segments. For non-prominent works—the red curve—aggressive pricing kills sales. The probability drops from nearly 100% to around 55%. Buyers interpret high reserves as overvaluation.</p>
+<p>But for prominent artists—the blue curve—we see something fascinating: at extreme prices, above $150,000, the curve turns upward again. High reserves on masterpieces signal confidence and quality, attracting serious collectors rather than deterring them.</p>
+<p>This asymmetry motivates our segmented approach—pricing dynamics are fundamentally different.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -739,27 +741,28 @@ P(\text{sold}_i = 1 | \mathbf{X}_i) &amp;= \Phi(\mathbf{X}_i' \boldsymbol{\beta}
 <li><p><strong>Size matters most for non-prominent artists</strong> (+9.0pp)</p></li>
 <li><p><strong>Opening price is the dominant penalty</strong> — especially for non-prominent (−13.6pp per log increase)</p>
 <ul>
-<li>A non-prominent work with 10% higher reserve loses 1.4pp in sale probability</li>
+<li>A 10% higher opening prices decreases sale probability by 1.4pp for non-prominent segment</li>
 <li>Auctioneers must price aggressively for this segment</li>
 </ul></li>
 <li><p><strong>Aspect ratio</strong> — has a small but significant effect</p></li>
 <li><p><strong>Medium, material effects</strong>, while statistically significant, are economically modest. This suggests buyers prioritize the <strong>artistic medium and the artist’s reputation</strong> far more than physical durability or presentation format.</p></li>
 </ol>
-</section>
-<section id="opening-price-vs-sale-probability" class="slide level2">
-<h2>Opening Price vs Sale Probability</h2>
-<div class="columns">
-<div class="column" style="width:80%;">
-<p><img data-src="fig/sale_opening_price1.png" style="width:70.0%"></p>
-<ul>
-<li>Buyers discount heavily on non-prominent names; high reserves signal desperation or overvaluation</li>
-<li>At extreme prices, high reserves on prominent works signal confidence (attraction)</li>
-</ul>
-</div><div class="column" style="width:20%;">
-<ul>
-<li>Aggressive opening prices filter to serious collectors only; for non-prominent segment this shrinks the addressable market; for established names, it selects the most committed buyers</li>
-</ul>
-</div></div>
+<aside class="notes">
+<p>Three key findings: First, signatures boost sale probability by 11 percentage points for prominent artists but only 5 points for non-prominent—authentication matters more for established names.</p>
+<p>Second, size has the opposite pattern—it matters MORE for non-prominent works, at 9 percentage points versus 5. This suggests non-prominent buyers prioritize visual presence and decorative value.</p>
+<p>Third, and most important: opening price is the dominant penalty. A 10% higher reserve costs non-prominent works 1.4 percentage points in sale probability—nearly double the effect for prominent works. This means auctioneers must price aggressively, especially for lesser-known artists.</p>
+<p>Finally, notice that medium and material effects are economically modest—buyers prioritize the artist’s reputation and artistic vision over physical materials.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 <!-- ## Sale model: summary  -->
 <!-- - **Core drivers** of sale probability are signature status (+8–11pp), artwork scale (+5–9pp), and opening price strategy (−7 to −14pp). These factors dwarf all other considerations. -->
 <!-- - **Medium effects**, while statistically significant, are economically modest. Drawing media (graphite, pastel) incur penalties of 4–8pp relative to oil painting, but this pales beside the 10pp opening price elasticity or the 6–9pp size effect. Acrylic performs equivalently to oil, suggesting **technique matters less than the painting vs. drawing dichotomy**—reflecting persistent market preference for painted works over drawings. -->
@@ -826,8 +829,8 @@ p_{it} = \beta x_i + \sum_{t=1}^{T} \gamma_t D_t + \varepsilon_{it},
           display:block!important;
       }</style></aside>
 </section>
-<section id="hedonic-price-index" class="slide level2">
-<h2>Hedonic price index</h2>
+<section id="hedonic-price-index-in-usd-aggregate" class="slide level2">
+<h2>Hedonic price index (in USD, aggregate)</h2>
 <div class="columns">
 <div class="column" style="width:80%;">
 <p><img data-src="fig/hedonic_index_USD_tran.png"></p>
@@ -835,8 +838,8 @@ p_{it} = \beta x_i + \sum_{t=1}^{T} \gamma_t D_t + \varepsilon_{it},
 
 </div></div>
 </section>
-<section id="hedonic-price-index-1" class="slide level2">
-<h2>Hedonic price index</h2>
+<section id="hedonic-price-index-in-usd-segmented" class="slide level2">
+<h2>Hedonic price index (in USD, segmented)</h2>
 <div class="columns">
 <div class="column" style="width:78%;">
 <p><img data-src="fig/hedonic_index_USD_segment.png"></p>
@@ -855,8 +858,8 @@ p_{it} = \beta x_i + \sum_{t=1}^{T} \gamma_t D_t + \varepsilon_{it},
 </ul>
 </div></div>
 </section>
-<section id="hedonic-price-index-2" class="slide level2">
-<h2>Hedonic price index</h2>
+<section id="hedonic-price-index-in-tl-segmented" class="slide level2">
+<h2>Hedonic price index (in TL, segmented)</h2>
 <div class="columns">
 <div class="column" style="width:75%;">
 <p><img data-src="fig/hedonic_index_TL_segment.png"></p>
@@ -864,12 +867,12 @@ p_{it} = \beta x_i + \sum_{t=1}^{T} \gamma_t D_t + \varepsilon_{it},
 
 </div></div>
 </section>
-<section id="hedonic-price-index-3" class="slide level2">
-<h2>Hedonic price index</h2>
+<section id="hedonic-price-index-in-tl-log-scale-with-cpi" class="slide level2">
+<h2>Hedonic price index (in TL, log scale, with CPI)</h2>
 <div class="columns">
-<div class="column" style="width:80%;">
+<div class="column" style="width:85%;">
 <p><img data-src="fig/art_index_TL_log.png"></p>
-</div><div class="column" style="width:20%;">
+</div><div class="column" style="width:15%;">
 
 </div></div>
 </section>
@@ -924,7 +927,6 @@ p_{it} = \beta x_i + \sum_{t=1}^{T} \gamma_t D_t + \varepsilon_{it},
 </tbody>
 </table>
 </div><div class="column" style="width:45%;">
-<h3 id="key-insights">Key Insights</h3>
 <ul>
 <li><strong>High inflation environment</strong>:
 <ul>
@@ -1006,7 +1008,7 @@ p_{it} = \beta x_i + \sum_{t=1}^{T} \gamma_t D_t + \varepsilon_{it},
 <td style="text-align: center;">4th</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><strong>Housing (KFE)</strong> 🏠</td>
+<td style="text-align: left;"><strong>Housing</strong> 🏠</td>
 <td style="text-align: right;">11.5% ± 4.9%</td>
 <td style="text-align: right;"><strong>1.2%</strong> ± 6.3%</td>
 <td style="text-align: right;">Low</td>
@@ -1024,7 +1026,6 @@ p_{it} = \beta x_i + \sum_{t=1}^{T} \gamma_t D_t + \varepsilon_{it},
 </tbody>
 </table>
 </div><div class="column" style="width:40%;">
-<h3 id="key-rankings">Key Rankings</h3>
 <p><strong>Best Risk-Adjusted</strong> 🏆<br>
 1. Gold (0.24) 2. BIST100 (0.22) 3. Housing (0.19)</p>
 <p><strong>Worst Performers</strong> 📉<br>
@@ -1060,7 +1061,7 @@ p_{it} = \beta x_i + \sum_{t=1}^{T} \gamma_t D_t + \varepsilon_{it},
 <h2>Correlations</h2>
 <div class="columns">
 <div class="column" style="width:75%;">
-<p><img data-src="fig/correlation_real.png"></p>
+<p><img data-src="fig/correlation_real.png" style="width:75.0%"></p>
 </div><div class="column" style="width:25%;">
 <ul>
 <li>Art segments move together</li>
@@ -2033,6 +2034,65 @@ p_{it} = \beta x_i + \sum_{t=1}^{T} \gamma_t D_t + \varepsilon_{it},
 <p></p>
 </div>
 </section>
+<section id="liquidity-by-artist-group" class="slide level2">
+<h2>Liquidity by Artist group</h2>
+<table class="caption-top">
+<caption>Sale rates by artist group (1989-2020)</caption>
+<thead>
+<tr class="header">
+<th>Artist Group</th>
+<th style="text-align: right;">N Offered</th>
+<th style="text-align: right;">N Sold</th>
+<th style="text-align: right;">N Unsold</th>
+<th style="text-align: right;">Sale Rate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Prominent</td>
+<td style="text-align: right;">43,020</td>
+<td style="text-align: right;">31,748</td>
+<td style="text-align: right;">11,272</td>
+<td style="text-align: right;">73.8%</td>
+</tr>
+<tr class="even">
+<td>Non-Prominent</td>
+<td style="text-align: right;">40,450</td>
+<td style="text-align: right;">24,766</td>
+<td style="text-align: right;">15,684</td>
+<td style="text-align: right;">61.2%</td>
+</tr>
+<tr class="odd">
+<td>Anonymous</td>
+<td style="text-align: right;">3,181</td>
+<td style="text-align: right;">1,637</td>
+<td style="text-align: right;">1,544</td>
+<td style="text-align: right;">51.5%</td>
+</tr>
+<tr class="even">
+<td>Other (nlots&lt;15)</td>
+<td style="text-align: right;">13,856</td>
+<td style="text-align: right;">7,312</td>
+<td style="text-align: right;">6,544</td>
+<td style="text-align: right;">52.8%</td>
+</tr>
+<tr class="odd">
+<td><strong>Total</strong></td>
+<td style="text-align: right;"><strong>100,507</strong></td>
+<td style="text-align: right;"><strong>65,463</strong></td>
+<td style="text-align: right;"><strong>35,044</strong></td>
+<td style="text-align: right;"><strong>65.1%</strong></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Prominent artists</strong> have the highest sale rate (73.8%)</li>
+<li><strong>Anonymous artworks</strong> have the lowest (51.5%)</li>
+<li><strong>Non-prominent</strong> but established artists fall in the middle (61.2%) indicating meaningful market depth.</li>
+<li><strong>Artists with few items</strong> also have low sale rates (52.8%) which may be a sign of limited marketing attention, weaker collector demand, and greater uncertainty about quality or attribution.</li>
+<li>Overall market sale rate: 65.1%</li>
+</ul>
+</section>
 <section id="auction-houses" class="slide level2">
 <h2>Auction houses</h2>
 <div class="columns">
@@ -2189,7 +2249,7 @@ p_{it} = \beta x_i + \sum_{t=1}^{T} \gamma_t D_t + \varepsilon_{it},
         progress: true,
 
         // Display the page number of the current slide
-        slideNumber: false,
+        slideNumber: 'c/t',
 
         // 'all', 'print', or 'speaker'
         showSlideNumber: 'all',
